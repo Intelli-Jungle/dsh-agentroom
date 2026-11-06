@@ -54,3 +54,5 @@ Desktop 首次运行发现其内置版本高于 CLI：0.2.2 删除了 `sessionCo
 6. 解包 `0.1.1` 发布物，核对主入口、全部 exports、bundle patch、图标、截图声明对应文件存在；没有 `preinstall`、`install`、`postinstall` 或 `prepare` 安装钩子。
 
 发布与社区收录方式见 [发布说明](publication.md)。
+
+正式 Release 重新下载、全新安装、原生发现页和社区投稿的结果见 [v0.1.1 发布后复验](release-verification-0.1.1.md)。
