@@ -1,0 +1,63 @@
+{
+  "format": 1,
+  "title": {
+    "en": "Intelli-Jungle plugins",
+    "zh": "Intelli-Jungle 插件"
+  },
+  "description": {
+    "en": "DSH plugins maintained by Intelli-Jungle.",
+    "zh": "由 Intelli-Jungle 维护的 DSH 插件。"
+  },
+  "metadata": {
+    "categories": {
+      "workflow": {
+        "title": {
+          "en": "Agent collaboration",
+          "zh": "Agent 协作"
+        }
+      }
+    }
+  },
+  "plugins": [
+    {
+      "name": "dsh-agentroom",
+      "title": {
+        "en": "DSH Agentroom",
+        "zh": "DSH Agentroom · 多 Agent 协作"
+      },
+      "description": {
+        "en": "A Slack-style shared room with independent native DSH sessions, parallel @ mentions and bounded agent handoffs.",
+        "zh": "Slack 风格共享聊天室：独立 DSH 原生会话、并行 @ 提及与有次数限制的 Agent 接力。"
+      },
+      "icon": "../assets/icon.svg",
+      "author": "Intelli-Jungle",
+      "homepage": "https://github.com/Intelli-Jungle/dsh-agentroom",
+      "repository": {
+        "url": "https://github.com/Intelli-Jungle/dsh-agentroom"
+      },
+      "metadata": {
+        "category": "workflow",
+        "keywords": [
+          "agent",
+          "teamroom",
+          "multi-agent",
+          "协作"
+        ]
+      },
+      "versions": [
+        {
+          "version": "0.1.1",
+          "publishTimestamp": 1793969969,
+          "source": {
+            "type": "git",
+            "url": "https://github.com/Intelli-Jungle/dsh-agentroom",
+            "commit": "fd692ff63708e911622bd93ebf5222950136dae3"
+          },
+          "engines": {
+            "dsh": ">=0.2.1-rc.5 <0.3.0"
+          }
+        }
+      ]
+    }
+  ]
+}
