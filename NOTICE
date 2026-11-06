@@ -1,0 +1,7 @@
+DSH Agentroom
+Copyright 2026 Intelli-Jungle contributors
+
+The interaction model and visual palette are adapted from Agent Teamroom,
+https://github.com/Intelli-Jungle/agent-teamroom (Apache License 2.0).
+The DSH implementation is new. No DSH-Bot source code is included.
+DSH-Bot by MJ-CJM was consulted as an example of native DSH plugin packaging.

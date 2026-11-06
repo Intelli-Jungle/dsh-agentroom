@@ -1,0 +1,30 @@
+{
+  "name": "dsh-agentroom",
+  "version": "0.1.0",
+  "description": "Slack-style multi-agent teamroom for DeepSeek Harness, inspired by Intelli-Jungle/agent-teamroom.",
+  "type": "module",
+  "license": "Apache-2.0",
+  "author": "Intelli-Jungle",
+  "main": "./dist/index.mjs",
+  "exports": { ".": "./dist/index.mjs", "./client": "./dist/client.js", "./package.json": "./package.json" },
+  "files": ["dist", "assets", "cordis.patch.yml", "README.md", "LICENSE", "NOTICE", "docs"],
+  "engines": { "node": ">=22", "dsh": ">=0.2.1-rc.5 <0.3.0" },
+  "repository": { "type": "git", "url": "git+https://github.com/Intelli-Jungle/dsh-agentroom.git" },
+  "homepage": "https://github.com/Intelli-Jungle/dsh-agentroom",
+  "icon": "./assets/icon.svg",
+  "keywords": ["dsh-plugin", "deepseek-harness", "multi-agent", "teamroom"],
+  "dsh": {
+    "manifestVersion": 1,
+    "bundle": { "patch": "./cordis.patch.yml" },
+    "client": { "platform": "web", "inject": ["@deepseek-ai/dsh-api-session-controller", "@deepseek-ai/dsh-client-ui-layout", "@deepseek-ai/dsh-client-ui-sidebar", "@deepseek-ai/dsh-client-ui-workspace"] }
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "node scripts/test.mjs",
+    "check": "npm run typecheck && npm test && npm run build",
+    "prepack": "npm run build"
+  },
+  "dependencies": { "@deepseek-ai/schemastery": "3.18.5", "zod": "4.4.3" },
+  "devDependencies": { "@types/node": "22.20.0", "@types/react": "18.3.28", "@types/react-dom": "18.3.7", "esbuild": "0.25.12", "react": "18.3.1", "react-dom": "18.3.1", "typescript": "5.9.3" }
+}
