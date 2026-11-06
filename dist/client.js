@@ -537,7 +537,9 @@ function App({ openSession }) {
       ] }),
       /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("footer", { className: "ar-footer", children: [
         /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
-          "v0.1.0 ",
+          "v",
+          "0.1.1",
+          " ",
           /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "\xA9 Intelli-Jungle" })
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", { className: "ar-subtle", onClick: () => importInput.current?.click(), children: [

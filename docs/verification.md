@@ -5,7 +5,7 @@
 - macOS / Apple Silicon。
 - 已安装 CLI：`@deepseek-ai/dsh 0.2.1-rc.5`，在独立 `DSH_HOME` 的 Web profile 验证，未导入用户原有会话。
 - 已安装 DeepSeek Harness Desktop：内置 DSH 运行时 `0.2.2-rc.1`。通过原生插件管理器安装 `.tgz`、启用并完整重启。
-- 插件：`dsh-agentroom 0.1.0`；使用真实 DeepSeek 模型配置。没有脚本模型替代实际模型请求。
+- 插件：首轮 `dsh-agentroom 0.1.0`；第二轮为发布版 `0.1.1`。使用真实 DeepSeek 模型配置，没有脚本模型替代实际模型请求。
 
 ## 自动化检查
 
@@ -43,3 +43,14 @@ Desktop 首次运行发现其内置版本高于 CLI：0.2.2 删除了 `sessionCo
 - [手机布局](screenshots/agentroom-mobile.png)
 
 这些检查证明已列功能在上述本机环境可运行，不代表所有模型、所有任务质量、其他版本或其他平台都已验证。外部 CLI Agent、图片附件、定时任务和长期记忆未实现。
+
+## 发布前第二轮验证
+
+1. 从 GitHub Release 重新下载 `0.1.0` 的 tarball 与校验文件，SHA-256 通过。在全新独立 `DSH_HOME` 中从该 tarball 安装，原生侧栏与主面板加载正常。
+2. 人工消息只提及 Coder。Coder 使用原生 `read` 读取验收文件，回复 `7 + 5 = 12` 和 `RELEASE-VERIFY-PASS`，再通过独立请求行自动交接 Reviewer；Reviewer 也使用原生 `read` 后回复 `REVIEW-VERIFY-PASS`。两个执行均完成，无浏览器运行错误。
+3. 将同一隔离环境升级至 `0.1.1` 并重启，房间与之前的回复保留。通过界面发送 `@all`，Planner、Coder、Reviewer 三个原生 Session 分别完成并回复 `AGENTROOM-0.1.1-PASS`，没有额外接力。
+4. 实际 Desktop 卸载旧包、安装 `0.1.1`、启用、完整退出后重新打开。原房间与对话保留，Planner 的真实请求完成并回复 `DESKTOP-0.1.1-PASS`。
+5. `npm run check` 再次通过全部 11 项测试与生产构建。Zod 升级至 `4.6.7` 后重新检查，`npm audit` 与生产依赖检查均为零已知告警。
+6. 解包 `0.1.1` 发布物，核对主入口、全部 exports、bundle patch、图标、截图声明对应文件存在；没有 `preinstall`、`install`、`postinstall` 或 `prepare` 安装钩子。
+
+发布与社区收录方式见 [发布说明](publication.md)。

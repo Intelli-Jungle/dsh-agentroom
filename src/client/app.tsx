@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import type { Member, Room, Run, Message } from '../model.ts';
+declare const __AGENTROOM_VERSION__: string;
 const active = (run: Run) => run.status === 'preparing' || run.status === 'running';
 type Summary = Omit<Room, 'messages' | 'runs' | 'sessions' | 'budgets'> & { messageCount: number; running: number };
 type Snapshot = { agents: Member[]; rooms: Summary[]; room?: Room; drafts: Record<string, string>; maxHandoffs: number };
@@ -91,7 +92,7 @@ export function App({ openSession }: { openSession(id: string): Promise<void> })
           </>}
         </section>
       </>}
-      <footer className="ar-footer"><span>v0.1.0 <span>© Intelli-Jungle</span></span><button className="ar-subtle" onClick={() => importInput.current?.click()}><Icon name="upload" size={12}/>{t('import')}</button></footer>
+      <footer className="ar-footer"><span>v{__AGENTROOM_VERSION__} <span>© Intelli-Jungle</span></span><button className="ar-subtle" onClick={() => importInput.current?.click()}><Icon name="upload" size={12}/>{t('import')}</button></footer>
     </main>
     <input type="file" hidden multiple ref={fileInput} accept="text/*,.md,.json,.csv,.ts,.tsx,.js,.py,.yaml,.yml,.log" onChange={e => { const picked = [...(e.target.files || [])]; e.target.value = ''; void act(async () => { if (files.length + picked.length > 4 || picked.some(f => f.size > 100_000)) throw new Error(t('textFiles')); const loaded = await Promise.all(picked.map(async f => { const text = await f.text(); if (text.includes('\0')) throw new Error(t('textFiles')); return { name: f.name, text }; })); setFiles([...files, ...loaded]); }); }}/>
     <input type="file" hidden ref={importInput} accept=".json,application/json" onChange={e => { const file = e.target.files?.[0]; e.target.value = ''; if (file) void act(async () => { if (file.size > 8 * 1024 * 1024) throw new Error('8 MB limit'); const imported = await api<Room>('import', JSON.parse(await file.text())); setShowArchived(true); selectRoom(imported.id); }); }}/>

@@ -10,10 +10,10 @@
 
 要求：DSH **0.2.1-rc.5（CLI/Web）**或 **0.2.2-rc.1（Desktop）**，已配置可用模型。其他 DSH 版本尚未验证。
 
-从本仓库 [Releases](https://github.com/Intelli-Jungle/dsh-agentroom/releases) 下载 `dsh-agentroom-0.1.0.tgz` 与校验文件：
+从本仓库 [Releases](https://github.com/Intelli-Jungle/dsh-agentroom/releases/latest) 下载 `dsh-agentroom-0.1.1.tgz` 与校验文件，在下载目录执行：
 
 ```bash
-shasum -a 256 -c dsh-agentroom-0.1.0.tgz.sha256
+shasum -a 256 -c dsh-agentroom-0.1.1.tgz.sha256
 ```
 
 Desktop：打开“插件 → 添加插件”，填入 `.tgz` 的绝对路径，安装并点击“立即启用”。按提示完整退出并重新打开 DSH，然后在左侧选择 **Agentroom**。Desktop profile 由桌面应用管理，不能通过 CLI 修改。
@@ -21,11 +21,27 @@ Desktop：打开“插件 → 添加插件”，填入 `.tgz` 的绝对路径，
 Web 实例请将 profile 换成 `web`，安装后重启该实例：
 
 ```bash
-dsh plugin --profile web add /绝对路径/dsh-agentroom-0.1.0.tgz
+dsh plugin --profile web add /绝对路径/dsh-agentroom-0.1.1.tgz
 dsh web
 ```
 
-本仓库与参考仓库一样默认私有；下载需要有仓库访问权限。也可以先克隆再安装本地构建包：
+仓库与 Release 公开，无需 GitHub 登录。也可以使用 Git 来源安装：Desktop 的“添加插件”中输入 `github:Intelli-Jungle/dsh-agentroom#v0.1.1`；Web profile 使用：
+
+```bash
+dsh plugin --profile web add github:Intelli-Jungle/dsh-agentroom#v0.1.1
+```
+
+仓库提交了预构建的 `dist/`，Git 安装与 `.tgz` 均不需要执行安装期构建脚本。GitHub 访问不稳定时优先下载 Release 安装包后通过本地路径安装。
+
+如需在原生“发现”页浏览：在插件页的实验性插件列表中开启“自定义插件索引”（0.2.1 称“自定义插件市场”），选择“发现 → 添加索引源”，填入：
+
+```text
+https://raw.githubusercontent.com/Intelli-Jungle/dsh-agentroom/main/market/index.json
+```
+
+索引遵循 DSH format 1，Git 来源固定到发布提交。此索引由 Intelli-Jungle 维护；DSH 不内置任何默认索引源。
+
+从源码开发：
 
 ```bash
 gh repo clone Intelli-Jungle/dsh-agentroom
@@ -35,7 +51,7 @@ npm run check
 npm pack
 ```
 
-仓库包含预构建的 `dist/`，安装 `.tgz` 不需要执行第三方构建脚本。
+更新 Desktop 上已有版本时，若管理器提示同名包已存在，先卸载旧插件，再安装新版并启用；房间数据保留在独立数据目录。完整重启后确认界面底部版本号为 `v0.1.1`。
 
 ## 使用
 
