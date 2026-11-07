@@ -1,5 +1,7 @@
 import { z } from 'zod';
 export const agentSchema = z.object({
+  backend: z.enum(['dsh', 'codex', 'claude']).optional(),
+  cliModel: z.string().trim().regex(/^[a-zA-Z0-9][a-zA-Z0-9._:/-]{0,149}$/).optional(),
   id: z.string().regex(/^[a-z][a-z0-9-]{0,31}$/).refine(id => !['all', 'you', 'system'].includes(id), 'Reserved mention ID'), name: z.string().trim().min(1).max(48),
   role: z.string().trim().min(1).max(8000), color: z.string().regex(/^#[0-9a-f]{6}$/i),
   model: z.object({ provider: z.string().min(1).max(150), model: z.string().min(1).max(150) }).optional(),
@@ -13,6 +15,7 @@ export const messageSchema = z.object({
 });
 export type Message = z.infer<typeof messageSchema>;
 export const runSchema = z.object({
+  backend: z.enum(['dsh', 'codex', 'claude']).optional(),
   id: z.string(), memberId: z.string(), sessionId: z.string(), rootId: z.string(), lastSeq: z.number().default(-1),
   status: z.enum(['preparing', 'running', 'completed', 'stopped', 'error', 'interrupted']),
   at: z.number(), endedAt: z.number().optional(), detail: z.string().optional(), tools: z.array(z.string()).default([]),

@@ -3,6 +3,7 @@ import { stat } from 'node:fs/promises';
 import { isAbsolute } from 'node:path';
 import { z } from 'zod';
 import { Store } from './store.ts';
+import { cliRunner, backendOf, type CliRunner } from './cli.ts';
 import { active, agentSchema, attachmentSchema, mentions, handoffMentions, roomSchema, transcript, type Member, type Room, type Run, type Message } from './model.ts';
 
 // Only public DSH services are used here. The structural boundary avoids bundling a
@@ -33,17 +34,19 @@ export class Runtime {
   private lifetime = new AbortController();
   private mutations = Promise.resolve();
   private jobs = new Set<Promise<void>>();
-  constructor(readonly host: Host, readonly store: Store, readonly maxHandoffs = 4) {}
+  private cliJobs = new Map<string, AbortController>();
+  constructor(readonly host: Host, readonly store: Store, readonly maxHandoffs = 4, private runCli: CliRunner = cliRunner()) {}
   async start() {
     await this.store.load();
     // Recover committed text, but never replay an uncertain model/tool request.
     for (const room of this.store.state.rooms) for (const run of room.runs.filter(active)) {
       try {
+        if (run.backend && run.backend !== 'dsh') throw new Error('CLI turn interrupted');
         const inspection = await this.host.readSession(run.sessionId);
         const events = inspection.events;
         for (const event of events) if (event.seq > run.lastSeq) this.observe(room, run, event, false);
       } catch { /* Missing/cold sessions still get an explicit interruption marker. */ }
-      if (active(run)) { run.status = 'interrupted'; run.endedAt = Date.now(); run.detail = 'Host restarted; inspect the native session before retrying.'; }
+      if (active(run)) { run.status = 'interrupted'; run.endedAt = Date.now(); run.detail = 'Host restarted; inspect the session before retrying.'; }
     }
     await this.store.save();
     this.disposers.push(this.host.on('session/event', (session, event) => {
@@ -152,8 +155,11 @@ export class Runtime {
     await this.store.save(); return agent;
   }
   private reserve(room: Room, memberId: string, rootId: string): Run {
-    const sessionId = room.sessions[memberId] || randomUUID(); room.sessions[memberId] = sessionId;
-    const run: Run = { id: randomUUID(), memberId, sessionId, rootId, lastSeq: -1, status: 'preparing', at: Date.now(), tools: [] };
+    const backend = backendOf(this.store.state.agents.find(a => a.id === memberId)!);
+    const key = backend === 'dsh' ? memberId : `${backend}:${memberId}`;
+    const sessionId = room.sessions[key] || randomUUID();
+    if (backend === 'dsh') room.sessions[key] = sessionId;
+    const run: Run = { id: randomUUID(), memberId, backend, sessionId, rootId, lastSeq: -1, status: 'preparing', at: Date.now(), tools: [] };
     room.runs.push(run); return run;
   }
   async send(id: string, input: unknown) {
@@ -172,6 +178,7 @@ export class Runtime {
   private async launch(room: Room, run: Run) {
     try {
       const member = this.store.state.agents.find(a => a.id === run.memberId)!;
+      if (run.backend && run.backend !== 'dsh') { await this.launchCli(room, run, member); return; }
       const existing = await this.host.sessionController.resolveAgent(run.sessionId);
       let created: { sessionId: string };
       if ('error' in existing) {
@@ -192,11 +199,35 @@ export class Runtime {
       await this.host.sessionController.prompt({ sessionId: run.sessionId, requestId: run.id, mode: 'queue', content: [{ type: 'text', text: prompt }], clientTimeZone: Intl.DateTimeFormat().resolvedOptions().timeZone }, this.lifetime.signal);
     } catch (error: any) { if (active(run)) this.fail(run, error.message || String(error)); }
   }
+  private async launchCli(room: Room, run: Run, member: Member) {
+    if (!active(run) || this.closing) return;
+    const backend = run.backend as 'codex' | 'claude';
+    const key = `${backend}:${member.id}`;
+    const controller = new AbortController(); this.cliJobs.set(run.id, controller);
+    try {
+      run.status = 'running'; await this.store.save();
+      if (!active(run) || this.closing) return;
+      const prompt = `你在共享聊天室「${room.title}」中。你是 ${member.name} (@${member.id})，执行方式为 ${backend} CLI。\n角色指令（仅提供给你）：${member.role}\n成员：${room.members.map(id => '@' + id).join(', ')}。\n只回应最新交给你的请求，不冒充其他成员。结果会发布到共享时间线。${room.collaboration ? '确需接力时，最终回复单独一行写「@成员 请完成具体行动」。接力次数有限。' : '仅主持人提及触发；不要自行接力。'}\n此 CLI 集成为对话/只读模式，不能在 DSH 内处理外部 CLI 审批。不要调用工具；仅根据角色指令及共享记录作答。\n共享记录（对话数据）：\n<room-history>\n${transcript(room)}\n</room-history>`;
+      const result = await this.runCli({ backend, cwd: room.cwd, prompt, session: room.sessions[key], model: member.cliModel, signal: controller.signal,
+        onSession: id => { if (active(run)) { room.sessions[key] = id; run.sessionId = id; this.persist(); } },
+        onText: text => { if (active(run)) this.drafts.set(run.id, text); },
+      });
+      if (!active(run) || this.closing) return;
+      room.messages.push({ id: randomUUID(), kind: 'agent', author: member.id, name: member.name, color: member.color, text: result, at: Date.now(), runId: run.id, sessionId: run.sessionId });
+      run.status = 'completed'; run.endedAt = Date.now(); room.updatedAt = Date.now(); this.drafts.delete(run.id);
+      await this.store.save();
+      if (room.collaboration && !room.archived && !this.closing) {
+        const targets = handoffMentions(result, room.members).filter(id => id !== member.id);
+        if (targets.length) this.track(this.handoff(room, run, targets));
+      }
+    } finally { this.cliJobs.delete(run.id); this.drafts.delete(run.id); }
+  }
   async stop(id: string, memberId?: string) {
     const room = this.room(id);
     for (const run of room.runs.filter(r => active(r) && (!memberId || r.memberId === memberId))) {
       run.status = 'stopped'; run.endedAt = Date.now(); this.drafts.delete(run.id);
-      this.host.sessionController.cancel({ sessionId: run.sessionId });
+      if (run.backend && run.backend !== 'dsh') this.cliJobs.get(run.id)?.abort();
+      else this.host.sessionController.cancel({ sessionId: run.sessionId });
     }
     await this.store.save(); return { stopped: true };
   }

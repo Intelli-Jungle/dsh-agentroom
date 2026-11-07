@@ -5,15 +5,18 @@ import { Store } from './store.ts';
 import { Runtime } from './runtime.ts';
 import { handler } from './http.ts';
 import { modelSelector } from './models.ts';
+import { cliRunner } from './cli.ts';
 export const name = 'dsh-agentroom';
 export const inject = ['webServer', 'connection', 'sessionController', 'sessionQuery', 'llm', 'agentDefaultModel'];
 export const Config = schema.object({
   dataDir: schema.string().description('Absolute data directory; one running host per directory.').default(join(process.env.DSH_HOME?.trim() || join(homedir(), '.dsh'), 'dsh-agentroom')),
   maxHandoffs: schema.number().step(1).min(0).max(16).default(4).description('Maximum automatic member handoffs per human message.'),
+  codexPath: schema.string().default('codex').description('Codex executable name or absolute path. No shell arguments.'),
+  claudePath: schema.string().default('claude').description('Claude Code executable name or absolute path. No shell arguments.'),
 });
-export async function apply(ctx: any, config: { dataDir: string; maxHandoffs: number }) {
+export async function apply(ctx: any, config: { dataDir: string; maxHandoffs: number; codexPath?: string; claudePath?: string }) {
   if (!isAbsolute(config.dataDir)) throw new Error('Agentroom dataDir must be an absolute path');
-  const runtime = new Runtime({ sessionController: ctx.sessionController, readSession: (id: string) => ctx.sessionQuery.readSession(id), on: ctx.on.bind(ctx), logger: ctx.logger, configureModel: modelSelector(ctx) }, new Store(config.dataDir), config.maxHandoffs);
+  const runtime = new Runtime({ sessionController: ctx.sessionController, readSession: (id: string) => ctx.sessionQuery.readSession(id), on: ctx.on.bind(ctx), logger: ctx.logger, configureModel: modelSelector(ctx) }, new Store(config.dataDir), config.maxHandoffs, cliRunner({ codex: config.codexPath, claude: config.claudePath }));
   try { await runtime.start(); } catch (error) { await runtime.store.close(); throw error; }
   ctx.effect(() => () => runtime.close());
   ctx.effect(() => ctx.webServer.register({ kind: 'prefix', path: '/agentroom/api', handler: handler(ctx, runtime) }));

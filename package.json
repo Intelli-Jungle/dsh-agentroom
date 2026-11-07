@@ -1,6 +1,6 @@
 {
   "name": "dsh-agentroom",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Slack-style multi-agent teamroom for DeepSeek Harness, inspired by Intelli-Jungle/agent-teamroom.",
   "type": "module",
   "license": "Apache-2.0",
@@ -20,7 +20,8 @@
     "README.md",
     "LICENSE",
     "NOTICE",
-    "docs"
+    "docs",
+    "!docs/videos/*.mp4"
   ],
   "engines": {
     "node": ">=22",

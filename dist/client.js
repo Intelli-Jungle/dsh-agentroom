@@ -31,8 +31,8 @@ var import_react = require("react");
 var import_jsx_runtime = require("react/jsx-runtime");
 var active = (run) => run.status === "preparing" || run.status === "running";
 var words = {
-  zh: { tagline: "\u4EBA\u4E0E Agent\uFF0C\u5728\u4E00\u4E2A\u623F\u95F4\u91CC\u534F\u4F5C", sessions: "\u4F1A\u8BDD", new: "\u65B0\u5EFA\u4F1A\u8BDD", agents: "\u56E2\u961F\u6210\u5458", addAgent: "\u6DFB\u52A0\u6210\u5458", search: "\u641C\u7D22\u4F1A\u8BDD\u2026", online: "\u5DF2\u8FDE\u63A5 DSH", connecting: "\u6B63\u5728\u8FDE\u63A5\u2026", archived: "\u5DF2\u5F52\u6863", showArchive: "\u663E\u793A\u5F52\u6863", hideArchive: "\u9690\u85CF\u5F52\u6863", empty: "\u7ED9\u4F60\u7684 Agent \u56E2\u961F\u4E00\u4E2A\u623F\u95F4", intro: "\u5728\u540C\u4E00\u6761\u65F6\u95F4\u7EBF\u91CC\u5206\u914D\u4EFB\u52A1\u3001\u8BA8\u8BBA\u65B9\u6848\u3001\u4EA4\u4ED8\u7ED3\u679C\u3002", start: "\u521B\u5EFA\u7B2C\u4E00\u4E2A\u4F1A\u8BDD", emptyRoom: "\u4ECE\u4E00\u6B21\u63D0\u53CA\u5F00\u59CB\u534F\u4F5C", roomIntro: "\u4F8B\u5982 @planner \u5148\u5206\u6790\u4EFB\u52A1\uFF0C\u6216 @all \u8BF7\u5404\u81EA\u7ED9\u51FA\u5EFA\u8BAE\u3002", manage: "\u7BA1\u7406\u4F1A\u8BDD", send: "\u53D1\u9001\u6D88\u606F", placeholder: "\u5199\u4E0B\u6D88\u606F\uFF0C@ \u63D0\u53CA\u6210\u5458\u6765\u5206\u914D\u4EFB\u52A1\u2026", hint: "Enter \u53D1\u9001 \xB7 Shift + Enter \u6362\u884C", mentionHint: "\u4EC5 @ \u63D0\u53CA\u89E6\u53D1 \xB7 @all \u901A\u77E5\u6240\u6709\u6210\u5458", archive: "\u5F52\u6863\u4F1A\u8BDD", restore: "\u6062\u590D\u4F1A\u8BDD", exportMd: "\u5BFC\u51FA Markdown", exportJson: "\u5BFC\u51FA JSON", import: "\u5BFC\u5165\u4F1A\u8BDD", stop: "\u505C\u6B62\u5168\u90E8", stopMember: "\u505C\u6B62\u6210\u5458", native: "\u67E5\u770B\u539F\u751F\u4F1A\u8BDD", execution: "\u6267\u884C\u8BB0\u5F55", running: "\u6267\u884C\u4E2D", preparing: "\u51C6\u5907\u4E2D", completed: "\u5DF2\u5B8C\u6210", stopped: "\u5DF2\u505C\u6B62", error: "\u5931\u8D25", interrupted: "\u5DF2\u4E2D\u65AD", title: "\u4F1A\u8BDD\u540D\u79F0", cwd: "\u5DE5\u4F5C\u76EE\u5F55\uFF08\u7EDD\u5BF9\u8DEF\u5F84\uFF09", members: "\u53C2\u4E0E\u6210\u5458", collab: "\u5141\u8BB8 Agent \u901A\u8FC7 @ \u63D0\u53CA\u63A5\u529B", collabHelp: "\u6BCF\u6761\u4EBA\u5DE5\u6D88\u606F\u6700\u591A\u81EA\u52A8\u63A5\u529B {n} \u6B21\u3002\u53EF\u968F\u65F6\u505C\u6B62\u3002", create: "\u521B\u5EFA\u4F1A\u8BDD", save: "\u4FDD\u5B58", cancel: "\u53D6\u6D88", agentTitle: "\u6210\u5458\u8BBE\u7F6E", agentId: "\u63D0\u53CA ID", agentName: "\u663E\u793A\u540D\u79F0", role: "\u89D2\u8272\u6307\u4EE4", model: "\u6A21\u578B", hostModel: "\u4F7F\u7528 DSH \u9ED8\u8BA4\u6A21\u578B", color: "\u5934\u50CF\u989C\u8272", files: "\u6DFB\u52A0\u6587\u672C\u9644\u4EF6", remove: "\u79FB\u9664", attachment: "\u9644\u4EF6", readOnly: "\u6B64\u4F1A\u8BDD\u5DF2\u5F52\u6863\uFF0C\u6062\u590D\u540E\u53EF\u7EE7\u7EED\u3002", menu: "\u4F1A\u8BDD\u64CD\u4F5C", rename: "\u7BA1\u7406", loading: "\u52A0\u8F7D\u4E2D\u2026", noResults: "\u6CA1\u6709\u5339\u914D\u7684\u4F1A\u8BDD", team: "\u56E2\u961F", you: "\u4F60", system: "\u7CFB\u7EDF", modelError: "\u6A21\u578B\u76EE\u5F55\u4E0D\u53EF\u7528", noMessages: "\u6682\u65E0\u6D88\u606F", failed: "\u64CD\u4F5C\u5931\u8D25", textFiles: "\u652F\u6301\u6587\u672C\u3001Markdown\u3001JSON\u3001\u4EE3\u7801\uFF1B\u6700\u591A 4 \u4E2A\uFF0C\u6BCF\u4E2A 100 KB\u3002", working: "\u6B63\u5728\u601D\u8003\u4E0E\u6267\u884C", jump: "\u56DE\u5230\u6700\u65B0\u6D88\u606F", settings: "\u5207\u6362\u4E3B\u9898", language: "Switch to English", back: "\u4F1A\u8BDD\u5217\u8868", overview: "\u5171\u4EAB\u804A\u5929\u8BB0\u5F55 \xB7 DSH \u539F\u751F\u6267\u884C", humanOnly: "\u4EC5\u4EBA\u5DE5\u89E6\u53D1", auto: "\u81EA\u52A8\u63A5\u529B\u5DF2\u5F00\u542F", chooseDir: "/\u7EDD\u5BF9\u8DEF\u5F84/\u4F60\u7684\u9879\u76EE", nativeDescription: "\u5DE5\u5177\u6267\u884C\u4E0E\u5BA1\u6279\u5728 DSH \u539F\u751F\u4F1A\u8BDD\u4E2D\u67E5\u770B", importNotice: "\u5DF2\u5BFC\u5165\u4E3A\u5F52\u6863\u4F1A\u8BDD\uFF0C\u6062\u590D\u540E\u53EF\u7EE7\u7EED\u3002" },
-  en: { tagline: "People and agents, working together", sessions: "Sessions", new: "New session", agents: "Team members", addAgent: "Add member", search: "Search sessions\u2026", online: "Connected to DSH", connecting: "Connecting\u2026", archived: "Archived", showArchive: "Show archived", hideArchive: "Hide archived", empty: "A room for your agent team", intro: "Assign tasks, discuss ideas, and deliver work in one shared timeline.", start: "Create your first session", emptyRoom: "Start with a mention", roomIntro: "Try @planner to break down a task, or @all to hear from everyone.", manage: "Manage session", send: "Send message", placeholder: "Write a message, @ mention a member to assign work\u2026", hint: "Enter to send \xB7 Shift + Enter for a new line", mentionHint: "Only @ mentions trigger work \xB7 @all reaches everyone", archive: "Archive session", restore: "Restore session", exportMd: "Export Markdown", exportJson: "Export JSON", import: "Import session", stop: "Stop all", stopMember: "Stop member", native: "Open native session", execution: "Execution details", running: "Running", preparing: "Preparing", completed: "Completed", stopped: "Stopped", error: "Failed", interrupted: "Interrupted", title: "Session name", cwd: "Working directory (absolute path)", members: "Members", collab: "Allow agents to hand work off with @ mentions", collabHelp: "At most {n} automatic handoffs per human message. Stop at any time.", create: "Create session", save: "Save", cancel: "Cancel", agentTitle: "Member settings", agentId: "Mention ID", agentName: "Display name", role: "Role instructions", model: "Model", hostModel: "Use DSH default model", color: "Avatar color", files: "Attach text files", remove: "Remove", attachment: "Attachment", readOnly: "This session is archived. Restore it to continue.", menu: "Session actions", rename: "Manage", loading: "Loading\u2026", noResults: "No matching sessions", team: "Team", you: "You", system: "System", modelError: "Model catalog unavailable", noMessages: "No messages yet", failed: "Operation failed", textFiles: "Text, Markdown, JSON, or code; up to 4 files, 100 KB each.", working: "Thinking and working", jump: "Jump to latest", settings: "Toggle theme", language: "\u5207\u6362\u4E2D\u6587", back: "Session list", overview: "Shared conversation \xB7 Native DSH execution", humanOnly: "Human mentions only", auto: "Automatic handoffs on", chooseDir: "/absolute/path/to/your/project", nativeDescription: "Inspect tools and approvals in the native DSH session", importNotice: "Imported as an archived session. Restore it to continue." }
+  zh: { backend: "\u6267\u884C\u65B9\u5F0F", cliModel: "CLI \u6A21\u578B\uFF08\u7559\u7A7A\u4F7F\u7528 CLI \u9ED8\u8BA4\uFF09", cliHelp: "\u5148\u5728\u7EC8\u7AEF\u5B89\u88C5\u5E76\u767B\u5F55\u3002Codex \u4E3A\u53EA\u8BFB\u6A21\u5F0F\uFF1BClaude \u7981\u7528\u5DE5\u5177\u3002CLI \u5BA1\u6279\u4E0D\u8FDB\u5165 DSH\u3002", cliSession: "\u5916\u90E8 CLI \u4F1A\u8BDD", tagline: "\u4EBA\u4E0E Agent\uFF0C\u5728\u4E00\u4E2A\u623F\u95F4\u91CC\u534F\u4F5C", sessions: "\u4F1A\u8BDD", new: "\u65B0\u5EFA\u4F1A\u8BDD", agents: "\u56E2\u961F\u6210\u5458", addAgent: "\u6DFB\u52A0\u6210\u5458", search: "\u641C\u7D22\u4F1A\u8BDD\u2026", online: "\u5DF2\u8FDE\u63A5 DSH", connecting: "\u6B63\u5728\u8FDE\u63A5\u2026", archived: "\u5DF2\u5F52\u6863", showArchive: "\u663E\u793A\u5F52\u6863", hideArchive: "\u9690\u85CF\u5F52\u6863", empty: "\u7ED9\u4F60\u7684 Agent \u56E2\u961F\u4E00\u4E2A\u623F\u95F4", intro: "\u5728\u540C\u4E00\u6761\u65F6\u95F4\u7EBF\u91CC\u5206\u914D\u4EFB\u52A1\u3001\u8BA8\u8BBA\u65B9\u6848\u3001\u4EA4\u4ED8\u7ED3\u679C\u3002", start: "\u521B\u5EFA\u7B2C\u4E00\u4E2A\u4F1A\u8BDD", emptyRoom: "\u4ECE\u4E00\u6B21\u63D0\u53CA\u5F00\u59CB\u534F\u4F5C", roomIntro: "\u4F8B\u5982 @planner \u5148\u5206\u6790\u4EFB\u52A1\uFF0C\u6216 @all \u8BF7\u5404\u81EA\u7ED9\u51FA\u5EFA\u8BAE\u3002", manage: "\u7BA1\u7406\u4F1A\u8BDD", send: "\u53D1\u9001\u6D88\u606F", placeholder: "\u5199\u4E0B\u6D88\u606F\uFF0C@ \u63D0\u53CA\u6210\u5458\u6765\u5206\u914D\u4EFB\u52A1\u2026", hint: "Enter \u53D1\u9001 \xB7 Shift + Enter \u6362\u884C", mentionHint: "\u4EC5 @ \u63D0\u53CA\u89E6\u53D1 \xB7 @all \u901A\u77E5\u6240\u6709\u6210\u5458", archive: "\u5F52\u6863\u4F1A\u8BDD", restore: "\u6062\u590D\u4F1A\u8BDD", exportMd: "\u5BFC\u51FA Markdown", exportJson: "\u5BFC\u51FA JSON", import: "\u5BFC\u5165\u4F1A\u8BDD", stop: "\u505C\u6B62\u5168\u90E8", stopMember: "\u505C\u6B62\u6210\u5458", native: "\u67E5\u770B\u539F\u751F\u4F1A\u8BDD", execution: "\u6267\u884C\u8BB0\u5F55", running: "\u6267\u884C\u4E2D", preparing: "\u51C6\u5907\u4E2D", completed: "\u5DF2\u5B8C\u6210", stopped: "\u5DF2\u505C\u6B62", error: "\u5931\u8D25", interrupted: "\u5DF2\u4E2D\u65AD", title: "\u4F1A\u8BDD\u540D\u79F0", cwd: "\u5DE5\u4F5C\u76EE\u5F55\uFF08\u7EDD\u5BF9\u8DEF\u5F84\uFF09", members: "\u53C2\u4E0E\u6210\u5458", collab: "\u5141\u8BB8 Agent \u901A\u8FC7 @ \u63D0\u53CA\u63A5\u529B", collabHelp: "\u6BCF\u6761\u4EBA\u5DE5\u6D88\u606F\u6700\u591A\u81EA\u52A8\u63A5\u529B {n} \u6B21\u3002\u53EF\u968F\u65F6\u505C\u6B62\u3002", create: "\u521B\u5EFA\u4F1A\u8BDD", save: "\u4FDD\u5B58", cancel: "\u53D6\u6D88", agentTitle: "\u6210\u5458\u8BBE\u7F6E", agentId: "\u63D0\u53CA ID", agentName: "\u663E\u793A\u540D\u79F0", role: "\u89D2\u8272\u6307\u4EE4", model: "\u6A21\u578B", hostModel: "\u4F7F\u7528 DSH \u9ED8\u8BA4\u6A21\u578B", color: "\u5934\u50CF\u989C\u8272", files: "\u6DFB\u52A0\u6587\u672C\u9644\u4EF6", remove: "\u79FB\u9664", attachment: "\u9644\u4EF6", readOnly: "\u6B64\u4F1A\u8BDD\u5DF2\u5F52\u6863\uFF0C\u6062\u590D\u540E\u53EF\u7EE7\u7EED\u3002", menu: "\u4F1A\u8BDD\u64CD\u4F5C", rename: "\u7BA1\u7406", loading: "\u52A0\u8F7D\u4E2D\u2026", noResults: "\u6CA1\u6709\u5339\u914D\u7684\u4F1A\u8BDD", team: "\u56E2\u961F", you: "\u4F60", system: "\u7CFB\u7EDF", modelError: "\u6A21\u578B\u76EE\u5F55\u4E0D\u53EF\u7528", noMessages: "\u6682\u65E0\u6D88\u606F", failed: "\u64CD\u4F5C\u5931\u8D25", textFiles: "\u652F\u6301\u6587\u672C\u3001Markdown\u3001JSON\u3001\u4EE3\u7801\uFF1B\u6700\u591A 4 \u4E2A\uFF0C\u6BCF\u4E2A 100 KB\u3002", working: "\u6B63\u5728\u601D\u8003\u4E0E\u6267\u884C", jump: "\u56DE\u5230\u6700\u65B0\u6D88\u606F", settings: "\u5207\u6362\u4E3B\u9898", language: "Switch to English", back: "\u4F1A\u8BDD\u5217\u8868", overview: "\u5171\u4EAB\u804A\u5929\u8BB0\u5F55 \xB7 \u72EC\u7ACB\u6210\u5458\u4F1A\u8BDD", humanOnly: "\u4EC5\u4EBA\u5DE5\u89E6\u53D1", auto: "\u81EA\u52A8\u63A5\u529B\u5DF2\u5F00\u542F", chooseDir: "/\u7EDD\u5BF9\u8DEF\u5F84/\u4F60\u7684\u9879\u76EE", nativeDescription: "\u5DE5\u5177\u6267\u884C\u4E0E\u5BA1\u6279\u5728 DSH \u539F\u751F\u4F1A\u8BDD\u4E2D\u67E5\u770B", importNotice: "\u5DF2\u5BFC\u5165\u4E3A\u5F52\u6863\u4F1A\u8BDD\uFF0C\u6062\u590D\u540E\u53EF\u7EE7\u7EED\u3002" },
+  en: { backend: "Runtime", cliModel: "CLI model (blank: CLI default)", cliHelp: "Install and sign in first. Codex is read-only; Claude tools are disabled. CLI approvals are not handled by DSH.", cliSession: "External CLI session", tagline: "People and agents, working together", sessions: "Sessions", new: "New session", agents: "Team members", addAgent: "Add member", search: "Search sessions\u2026", online: "Connected to DSH", connecting: "Connecting\u2026", archived: "Archived", showArchive: "Show archived", hideArchive: "Hide archived", empty: "A room for your agent team", intro: "Assign tasks, discuss ideas, and deliver work in one shared timeline.", start: "Create your first session", emptyRoom: "Start with a mention", roomIntro: "Try @planner to break down a task, or @all to hear from everyone.", manage: "Manage session", send: "Send message", placeholder: "Write a message, @ mention a member to assign work\u2026", hint: "Enter to send \xB7 Shift + Enter for a new line", mentionHint: "Only @ mentions trigger work \xB7 @all reaches everyone", archive: "Archive session", restore: "Restore session", exportMd: "Export Markdown", exportJson: "Export JSON", import: "Import session", stop: "Stop all", stopMember: "Stop member", native: "Open native session", execution: "Execution details", running: "Running", preparing: "Preparing", completed: "Completed", stopped: "Stopped", error: "Failed", interrupted: "Interrupted", title: "Session name", cwd: "Working directory (absolute path)", members: "Members", collab: "Allow agents to hand work off with @ mentions", collabHelp: "At most {n} automatic handoffs per human message. Stop at any time.", create: "Create session", save: "Save", cancel: "Cancel", agentTitle: "Member settings", agentId: "Mention ID", agentName: "Display name", role: "Role instructions", model: "Model", hostModel: "Use DSH default model", color: "Avatar color", files: "Attach text files", remove: "Remove", attachment: "Attachment", readOnly: "This session is archived. Restore it to continue.", menu: "Session actions", rename: "Manage", loading: "Loading\u2026", noResults: "No matching sessions", team: "Team", you: "You", system: "System", modelError: "Model catalog unavailable", noMessages: "No messages yet", failed: "Operation failed", textFiles: "Text, Markdown, JSON, or code; up to 4 files, 100 KB each.", working: "Thinking and working", jump: "Jump to latest", settings: "Toggle theme", language: "\u5207\u6362\u4E2D\u6587", back: "Session list", overview: "Shared conversation \xB7 Independent sessions", humanOnly: "Human mentions only", auto: "Automatic handoffs on", chooseDir: "/absolute/path/to/your/project", nativeDescription: "Inspect tools and approvals in the native DSH session", importNotice: "Imported as an archived session. Restore it to continue." }
 };
 async function api(path, input, signal) {
   const res = await fetch(`/agentroom/api/${path}`, { signal, method: input === void 0 ? "GET" : "POST", headers: { "x-agentroom-request": "1", ...input === void 0 ? {} : { "content-type": "application/json" } }, ...input === void 0 ? {} : { body: JSON.stringify(input) } });
@@ -282,7 +282,9 @@ function App({ openSession }) {
           /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: member.name }),
           /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("small", { children: [
             "@",
-            member.id
+            member.id,
+            " \xB7 ",
+            member.backend === "codex" ? "Codex CLI" : member.backend === "claude" ? "Claude Code" : "DSH"
           ] })
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: `ar-presence ${running.some((r) => r.memberId === member.id) ? "ar-pulsing" : ""}` })
@@ -434,7 +436,7 @@ function App({ openSession }) {
                 ] }),
                 /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "ar-running-tools", children: run.tools.slice(-3).join(" \u2192 ") }),
                 /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "ar-run-actions", children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", { onClick: () => act(() => openSession(run.sessionId)), children: [
+                  (!run.backend || run.backend === "dsh") && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", { onClick: () => act(() => openSession(run.sessionId)), children: [
                     /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Icon, { name: "external", size: 12 }),
                     t("native")
                   ] }),
@@ -460,7 +462,7 @@ function App({ openSession }) {
               ] }),
               run.detail && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("small", { children: run.detail })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", { onClick: () => act(() => openSession(run.sessionId)), children: [
+            (!run.backend || run.backend === "dsh") && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", { onClick: () => act(() => openSession(run.sessionId)), children: [
               t("native"),
               " ",
               /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Icon, { name: "external", size: 12 })
@@ -538,7 +540,7 @@ function App({ openSession }) {
       /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("footer", { className: "ar-footer", children: [
         /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
           "v",
-          "0.1.1",
+          "0.2.0",
           " ",
           /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "\xA9 Intelli-Jungle" })
         ] }),
@@ -617,10 +619,18 @@ function MessageRow({ message, runs, t, lang, openSession }) {
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
           run.tools.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: run.tools.join(" \u2192 ") }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: t("nativeDescription") }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", { onClick: () => openSession(run.sessionId), children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Icon, { name: "external", size: 12 }),
-            t("native")
+          run.backend && run.backend !== "dsh" ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { children: [
+            t("cliSession"),
+            " \xB7 ",
+            run.backend,
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("br", {}),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("code", { children: run.sessionId })
+          ] }) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: t("nativeDescription") }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", { onClick: () => openSession(run.sessionId), children: [
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Icon, { name: "external", size: 12 }),
+              t("native")
+            ] })
           ] })
         ] })
       ] })
@@ -704,10 +714,12 @@ function AgentForm({ editing, catalog, t, busy, onSave }) {
   const [role, setRole] = (0, import_react.useState)(editing?.role || "");
   const [color, setColor] = (0, import_react.useState)(editing?.color || "#4f46e5");
   const [model, setModel] = (0, import_react.useState)(editing?.model ? JSON.stringify(editing.model) : "");
+  const [backend, setBackend] = (0, import_react.useState)(editing?.backend || "dsh");
+  const [cliModel, setCliModel] = (0, import_react.useState)(editing?.cliModel || "");
   const options = catalog?.groups.flatMap((g) => g.models.map((m) => ({ value: JSON.stringify({ provider: g.id, model: m.id }), name: `${g.name} / ${m.name}` }))) || [];
   return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", { onSubmit: (e) => {
     e.preventDefault();
-    onSave({ id, name, role, color, ...model ? { model: JSON.parse(model) } : {} });
+    onSave({ id, name, role, color, backend, ...backend === "dsh" && model ? { model: JSON.parse(model) } : {}, ...backend !== "dsh" && cliModel.trim() ? { cliModel: cliModel.trim() } : {} });
   }, children: [
     /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "ar-field-row", children: [
       /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
@@ -721,9 +733,17 @@ function AgentForm({ editing, catalog, t, busy, onSave }) {
     ] }),
     /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
       t("role"),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("textarea", { required: true, rows: 5, maxLength: 8e3, value: role, onChange: (e) => setRole(e.target.value) })
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("textarea", { "aria-label": t("role"), required: true, rows: 5, maxLength: 8e3, value: role, onChange: (e) => setRole(e.target.value) })
     ] }),
     /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+      t("backend"),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("select", { "aria-label": t("backend"), value: backend, onChange: (e) => setBackend(e.target.value), children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "dsh", children: "DSH \u539F\u751F / Native" }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "codex", children: "Codex CLI" }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "claude", children: "Claude Code" })
+      ] })
+    ] }),
+    backend === "dsh" ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
       t("model"),
       /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("select", { value: model, onChange: (e) => setModel(e.target.value), children: [
         /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("option", { value: "", children: [
@@ -733,6 +753,12 @@ function AgentForm({ editing, catalog, t, busy, onSave }) {
         model && !options.some((o) => o.value === model) && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: model, children: JSON.parse(model).model }),
         options.map((o) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: o.value, children: o.name }, o.value))
       ] })
+    ] }) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+        t("cliModel"),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", { value: cliModel, onChange: (e) => setCliModel(e.target.value), maxLength: 150 })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "ar-field-help", children: t("cliHelp") })
     ] }),
     /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { className: "ar-color-label", children: [
       t("color"),

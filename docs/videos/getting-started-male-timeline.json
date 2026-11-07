@@ -1,0 +1,214 @@
+{
+  "slug": "getting-started-male",
+  "shots": [
+    {
+      "kind": "card",
+      "source": "docs/videos/getting-started-cover.png",
+      "duration": 8,
+      "title": "把不同 Agent 请进同一个房间",
+      "narration": "想让多个 Agent 一起讨论同一个问题？DSH Agentroom 把它们带进同一个房间。这次，我们用 Codex 和 Claude Code 举例。",
+      "rendered_start": 0,
+      "rendered_duration": 11.0
+    },
+    {
+      "kind": "card",
+      "source": "docs/videos/install-web.png",
+      "duration": 15,
+      "title": "先把插件装起来",
+      "narration": "先把插件装起来。Web 版按画面上的命令安装 DSH 和 Agentroom，然后启动 Web 页面。安装方式和配置说明，也可以在项目 README 中查看。",
+      "rendered_start": 11.0,
+      "rendered_duration": 12.367
+    },
+    {
+      "kind": "card",
+      "source": "docs/videos/install-desktop.png",
+      "duration": 14,
+      "title": "桌面安装与登录准备",
+      "narration": "桌面版可以在插件页添加、启用 Agentroom，然后完整重启应用。使用本机 CLI 时，先完成相应的安装和登录；原生成员则使用 DSH 的模型配置。",
+      "rendered_start": 23.367,
+      "rendered_duration": 13.067
+    },
+    {
+      "source": "work/recordings/hd/getting-started-03.mkv",
+      "start": 0,
+      "title": "从这里开始协作",
+      "caption": "一个共享聊天室，每位成员保持自己的持续会话。",
+      "narration": "准备好以后，打开左侧的 Agentroom。后面的分工、对话和结果，都会在这个房间里完成。",
+      "duration": 3.918,
+      "rendered_playback_rate": 0.5247,
+      "rendered_start": 36.433,
+      "rendered_duration": 7.467,
+      "crop": [
+        0,
+        0,
+        2560,
+        1336
+      ]
+    },
+    {
+      "source": "work/recordings/hd/getting-started-04.mkv",
+      "start": 0,
+      "title": "围绕产品发布，建立房间",
+      "caption": "填写名称、已有目录，再选择参与成员。",
+      "narration": "比如，我们要讨论一次产品发布。先创建房间，填写名称和已有的工作目录，再选上规划师、工程师和审查员。",
+      "duration": 4.522,
+      "rendered_playback_rate": 0.4568,
+      "rendered_start": 43.9,
+      "rendered_duration": 9.9,
+      "crop": [
+        0,
+        0,
+        2560,
+        1336
+      ]
+    },
+    {
+      "source": "work/recordings/hd/getting-started-05.mkv",
+      "start": 0,
+      "title": "安排分工，选择执行方式",
+      "caption": "按任务安排角色，选择合适的执行方式和模型。",
+      "narration": "然后给每位成员设定职责，再选择执行方式和模型。你可以按任务分配不同角色：有人负责规划，有人关注实现，也有人专门检查风险。",
+      "duration": 5.53,
+      "rendered_playback_rate": 0.4823,
+      "rendered_start": 53.8,
+      "rendered_duration": 11.467,
+      "crop": [
+        0,
+        0,
+        2560,
+        1336
+      ]
+    },
+    {
+      "source": "work/recordings/hd/getting-started-06.mkv",
+      "start": 0,
+      "title": "先请规划师起个头",
+      "caption": "@planner 只唤醒 Planner；普通消息不会启动成员。",
+      "narration": "我们先让规划师起个头：输入 @planner，再写任务。只有被点名的成员会启动；普通消息会进入共享记录。",
+      "duration": 4.123,
+      "rendered_playback_rate": 0.465,
+      "rendered_start": 65.267,
+      "rendered_duration": 8.867,
+      "crop": [
+        648,
+        336,
+        1912,
+        1000
+      ]
+    },
+    {
+      "source": "work/recordings/hd/getting-started-07.mkv",
+      "start": 0,
+      "title": "沿着同一段上下文继续聊",
+      "caption": "执行记录保留 CLI 来源与可续接的 Session ID。",
+      "narration": "方案回来后，可以直接在这里继续追问。执行记录会保留 CLI 来源和会话编号，让同一位成员接着刚才的上下文往下聊。",
+      "duration": 5.03,
+      "rendered_playback_rate": 0.4931,
+      "rendered_start": 74.133,
+      "rendered_duration": 10.2,
+      "crop": [
+        648,
+        0,
+        1912,
+        1000
+      ]
+    },
+    {
+      "source": "work/recordings/hd/getting-started-08.mkv",
+      "start": 0,
+      "title": "再让团队一起补充",
+      "caption": "@all 让多个成员同时回应同一份上下文。",
+      "narration": "有了初步思路，再用 @all 请大家一起补充。规划师看安排，工程师看实现，审查员看风险，他们回应的是同一段共享讨论。",
+      "duration": 4.127,
+      "rendered_playback_rate": 0.3537,
+      "rendered_start": 84.333,
+      "rendered_duration": 11.667,
+      "crop": [
+        648,
+        336,
+        1912,
+        1000
+      ]
+    },
+    {
+      "source": "work/recordings/hd/getting-started-09.mkv",
+      "start": 0,
+      "title": "把不同观点放在一起",
+      "caption": "独立执行，共享结论。",
+      "narration": "于是，原本分散在几个会话里的建议，就汇到了这条时间线上。你可以把分歧放在一起比较，再决定下一步。",
+      "duration": 6.641,
+      "rendered_playback_rate": 0.7633,
+      "rendered_start": 96.0,
+      "rendered_duration": 8.7,
+      "crop": [
+        648,
+        0,
+        1912,
+        1000
+      ]
+    },
+    {
+      "source": "work/recordings/hd/getting-started-10.mkv",
+      "start": 0,
+      "title": "由你决定如何接力",
+      "caption": "自动接力有次数上限；也可关闭，改由人工主持。",
+      "narration": "需要成员继续交接任务时，可以打开自动接力，每条人工消息默认最多四次。如果想自己控制节奏，就保持关闭。",
+      "duration": 5.239,
+      "rendered_playback_rate": 0.5715,
+      "rendered_start": 104.7,
+      "rendered_duration": 9.167,
+      "crop": [
+        0,
+        0,
+        2560,
+        1336
+      ]
+    },
+    {
+      "source": "work/recordings/hd/getting-started-11.mkv",
+      "start": 0,
+      "title": "把讨论留下来",
+      "caption": "支持 Markdown / JSON 导出，便于复盘与写文章。",
+      "narration": "讨论结束，导出 Markdown，整理成方案或文章；也可以导出 JSON，保存完整房间。",
+      "duration": 5.331,
+      "rendered_playback_rate": 0.7108,
+      "rendered_start": 113.867,
+      "rendered_duration": 7.5,
+      "crop": [
+        648,
+        0,
+        1912,
+        1000
+      ]
+    },
+    {
+      "kind": "card",
+      "source": "docs/videos/getting-started-ending-cover.png",
+      "duration": 10,
+      "narration": "从各自回答，到围绕同一个问题协作，Agentroom 把这段过程串了起来。选好成员，安排分工，再把讨论留下来，让团队的下一步更加清楚。",
+      "title": "从讨论到下一步",
+      "rendered_start": 121.367,
+      "rendered_duration": 12.667
+    }
+  ],
+  "voice": {
+    "engine": "edge-tts",
+    "name": "zh-CN-YunxiNeural",
+    "rate": "+6%",
+    "pitch": "+0Hz",
+    "leadIn": 0.25,
+    "tailOut": 0.6,
+    "label": "男声 · 云希",
+    "continuous": true
+  },
+  "rendered_duration": 134.033,
+  "capture": {
+    "resolution": [
+      2560,
+      1336
+    ],
+    "devicePixelRatio": 2,
+    "intermediate": "lossless H.264 4:4:4",
+    "provenance": "Real DSH UI with stage-by-stage replay of the original recorded conversation; no new model calls."
+  }
+}
