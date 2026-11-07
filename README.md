@@ -1,16 +1,18 @@
 # DSH Agentroom
 
+安装与发布来源保持 [Intelli-Jungle/dsh-agentroom](https://github.com/Intelli-Jungle/dsh-agentroom)。本次 v0.2.0 CLI 增强与视频通过 fork 提交供上游合并；合并前，上游 v0.1.1 Release 仍仅含 DSH 原生功能。视频展示的是本次增强版本的真实运行。
+
 在 DeepSeek Harness 里，与多个 Agent 共用一间 Slack 风格的聊天室。
 
 沿用 [Intelli-Jungle/agent-teamroom](https://github.com/Intelli-Jungle/agent-teamroom) 的会话列表、共享消息时间线、`@Agent` 路由、靛蓝强调色和深浅主题，作为 **DSH 原生插件**运行。每个成员在每个房间都有独立、可持续的会话。**v0.2.0 新增 Codex CLI 与 Claude Code 对话接入**，可与 DSH 原生成员混用；DSH 成员的模型、工具与审批沿用宿主配置，外部 CLI 使用各自的本机登录。
 
 ## 视频教程
 
-### ① 安装与上手 · 2 分 20 秒
+### ① 安装与上手 · 2 分 21 秒
 
-[![观看：DSH Agentroom 安装与上手](docs/videos/getting-started-cover.png)](https://github.com/Intelli-Jungle/dsh-agentroom/raw/refs/heads/main/docs/videos/getting-started.mp4)
+[![观看：DSH Agentroom 安装与上手](docs/videos/getting-started-cover.png)](docs/videos/getting-started.mp4?raw=1)
 
-**[播放 / 下载 MP4](https://github.com/Intelli-Jungle/dsh-agentroom/raw/refs/heads/main/docs/videos/getting-started.mp4)** · [中文字幕](docs/videos/getting-started.zh-CN.srt)
+**[播放 / 下载 MP4](docs/videos/getting-started.mp4?raw=1)** · [中文字幕](docs/videos/getting-started.zh-CN.srt)
 
 从 Web / Desktop 安装开始，演示新建 Room、角色与执行方式配置、`@planner` 单独聊天、`@all` 并行协作、独立 CLI 会话记录、自动接力设置和导出入口。支持范围为 DSH 原生、Codex CLI 与 Claude Code；本片聊天画面来自 **Codex CLI 真实调用**。1080p、中文合成旁白与底部字幕，模型等待时间已剪除。
 
@@ -24,6 +26,24 @@
 | 01:34 | 多成员并行讨论 |
 | 01:58 | 接力设置、主题和导出 |
 
+### ② Codex × Claude 狼人杀 · 2 分 01 秒
+
+[![观看：Codex 与 Claude Code 狼人杀](docs/videos/werewolf-cover.png)](docs/videos/werewolf.mp4?raw=1)
+
+**[播放 / 下载 MP4](docs/videos/werewolf.mp4?raw=1)** · [中文字幕](docs/videos/werewolf.zh-CN.srt) · [完整对话](docs/videos/werewolf-transcript.md) · [可导入的房间 JSON](docs/videos/werewolf-session.json)
+
+新建一间 Room，让 **两名 Codex CLI 玩家与两名 Claude Code 玩家**完成一局简化的一夜狼人杀。每名玩家独立保存身份与会话，主持人控制两轮讨论和最终投票。真实对局出现“双预言家对跳”，最终按真实票数揭晓胜负；发言和投票均由 CLI 生成，没有预写模型回复。画面剪掉等待时间，保留关键交锋。
+
+| 时间 | 内容 |
+| --- | --- |
+| 00:08 | 创建四人混合 CLI 房间 |
+| 00:21 | 身份与一夜规则 |
+| 00:36 | 第一轮公开发言 |
+| 00:46 | 两个预言家给出相反查验 |
+| 00:59 | 第二轮质疑与辩护 |
+| 01:22 | 最终投票 |
+| 01:45 | 统计、身份揭晓与结果 |
+
 视频、封面与字幕可直接用于介绍本项目的文章；引用时请注明 Intelli-Jungle / dsh-agentroom。录制与验证说明见 [视频制作记录](docs/videos/production.md)。
 
 ![DSH 原生界面](docs/screenshots/agentroom-light.png)
@@ -32,7 +52,7 @@
 
 要求：DSH **0.2.1-rc.5（CLI/Web）**或 **0.2.2-rc.1（Desktop）**。原生成员需要配置 DSH 模型；CLI 成员需要在本机安装并登录对应 CLI。其他 DSH 版本尚未验证。
 
-### v0.2.0：包含 CLI 接入的当前源码版
+### v0.2.0：CLI 增强源码版（上游合并后从原地址安装）
 
 ```bash
 # 尚未安装 DSH 时（Node.js 22+）
@@ -41,7 +61,7 @@ dsh plugin --profile web add github:Intelli-Jungle/dsh-agentroom#main
 dsh web
 ```
 
-Desktop 在“插件 → 添加插件”中输入 `github:Intelli-Jungle/dsh-agentroom#main`，安装、启用后完整重启。当前源码版含预构建产物，无需安装期编译。**下面的 v0.1.1 Release 是原生 DSH 版本，不含外部 CLI 接入。**
+Desktop 在“插件 → 添加插件”中输入 `github:Intelli-Jungle/dsh-agentroom#main`，安装、启用后完整重启。本次增强版含预构建产物，无需安装期编译；合并前，以上原仓库 `main` 尚不包含此 CLI 增强。**下面的 v0.1.1 Release 是原生 DSH 版本，不含外部 CLI 接入。**
 
 ### v0.1.1：已发布的原生 DSH 版本
 
@@ -116,6 +136,8 @@ npm pack
     claudePath: /绝对路径/claude
     maxHandoffs: 4
 ```
+
+CLI 子进程继承启动 DSH 时的环境。如果浏览器能登录而 CLI 返回 403，请检查终端是否配置了本机正在使用的 `HTTPS_PROXY` / `HTTP_PROXY`；系统代理不一定自动传给 CLI。`NO_PROXY` 应包含 `localhost,127.0.0.1`，修改后重启 DSH。不要把登录密钥写进成员角色或共享消息。
 
 每个“房间 × 成员 × 执行方式”独立续接；切换 CLI 不会误用另一个执行方式的 Session。执行记录会标明外部 CLI 与 Session ID，不能将其打开为 DSH 原生会话。CLI 登录、模型权限、用量与费用由对应 CLI 管理。
 

@@ -1,0 +1,391 @@
+{
+  "format": "dsh-agentroom/1",
+  "agents": [
+    {
+      "backend": "claude",
+      "id": "p1",
+      "name": "P1 · Claude",
+      "role": "你是一夜狼人杀玩家。只输出自己的公开发言，中文不超过70字，生动简短。不调用工具、不读取文件、不自行@接力。严格按主持人的阶段发言，不编造其他人的发言。最终投票只能写“投票：P数字”，禁止投自己。你的秘密身份是狼人。场上只有你一只狼，另外三位是好人。尽量隐瞒身份并误导投票，可以合理诈称身份，但不要主动承认是狼。",
+      "color": "#d68b62"
+    },
+    {
+      "backend": "codex",
+      "id": "p2",
+      "name": "P2 · Codex",
+      "role": "你是一夜狼人杀玩家。只输出自己的公开发言，中文不超过70字，生动简短。不调用工具、不读取文件、不自行@接力。严格按主持人的阶段发言，不编造其他人的发言。最终投票只能写“投票：P数字”，禁止投自己。你的秘密身份是预言家。夜间你已查验P3，结果为好人。这条查验是真实信息。你不知道P1和P4谁是狼，可以选择合适的时机公开身份与查验。",
+      "color": "#3b82f6"
+    },
+    {
+      "backend": "claude",
+      "id": "p3",
+      "name": "P3 · Claude",
+      "role": "你是一夜狼人杀玩家。只输出自己的公开发言，中文不超过70字，生动简短。不调用工具、不读取文件、不自行@接力。严格按主持人的阶段发言，不编造其他人的发言。最终投票只能写“投票：P数字”，禁止投自己。你的秘密身份是村民。你没有额外情报，依据公开讨论找狼，注意区分事实与猜测。",
+      "color": "#a96bd5"
+    },
+    {
+      "backend": "codex",
+      "id": "p4",
+      "name": "P4 · Codex",
+      "role": "你是一夜狼人杀玩家。只输出自己的公开发言，中文不超过70字，生动简短。不调用工具、不读取文件、不自行@接力。严格按主持人的阶段发言，不编造其他人的发言。最终投票只能写“投票：P数字”，禁止投自己。你的秘密身份是村民。你没有额外情报，喜欢追问证据，依据公开讨论找狼。",
+      "color": "#16a085"
+    }
+  ],
+  "room": {
+    "title": "月下疑云 · CLI 狼人杀",
+    "cwd": "/tmp/agentroom-demo",
+    "members": [
+      "p1",
+      "p2",
+      "p3",
+      "p4"
+    ],
+    "collaboration": false,
+    "id": "52b317d1-e91b-4d92-afb4-1097e0aedbcf",
+    "archived": false,
+    "createdAt": 1794023392682,
+    "updatedAt": 1794023578603,
+    "messages": [
+      {
+        "id": "76d47ce2-ae09-4841-97c5-6f020d05e733",
+        "text": "主持人：四人一夜狼人杀开始！一名狼人、一名预言家、两名村民，无夜间击杀。秘密身份已分别下发，预言家已获一次查验结果。白天两轮讨论后投票，不能投自己；最高票出局，平票则并列最高票者全部出局。出局者含狼人则好人获胜，否则狼人获胜。",
+        "attachments": [],
+        "author": "you",
+        "name": "You",
+        "color": "#64748b",
+        "kind": "human",
+        "at": 1794023404805
+      },
+      {
+        "id": "a515f015-233f-4f6a-93fa-fbe4cbfafbcf",
+        "text": "@all 第一轮公开发言：用最多60字介绍你的判断或策略，可选择是否跳身份。不要重复规则，不调用工具。",
+        "attachments": [],
+        "author": "you",
+        "name": "You",
+        "color": "#64748b",
+        "kind": "human",
+        "at": 1794023419802
+      },
+      {
+        "id": "d1332393-8ace-4161-ad22-17fc0c86e016",
+        "kind": "agent",
+        "author": "p3",
+        "name": "P3 · Claude",
+        "color": "#a96bd5",
+        "text": "我是村民，手上没有额外情报。希望预言家尽早跳身份报查验，帮我们锁定方向。谁回避表态、发言含糊，我会重点关注。",
+        "at": 1794023427401,
+        "runId": "07e87846-f3f5-4bc0-a647-a0b198dcbef7",
+        "sessionId": "edb0f564-fba5-4c9e-a104-fa28053de5a1"
+      },
+      {
+        "id": "9c3d8e5e-1daf-4456-abdc-dd091f0ec233",
+        "kind": "agent",
+        "author": "p1",
+        "name": "P1 · Claude",
+        "color": "#d68b62",
+        "text": "我是预言家！昨晚查验了P3，结果是**狼人**。月黑风高，别被花言巧语骗了。P3，你还有什么要辩解的？",
+        "at": 1794023429669,
+        "runId": "77b83d7e-d7d9-4215-bc96-7d2974e45b83",
+        "sessionId": "6bdb910e-b049-4f6a-a963-745e4cc60e18"
+      },
+      {
+        "id": "130353ed-fac7-4063-981a-8ff2f6f90d69",
+        "kind": "agent",
+        "author": "p4",
+        "name": "P4 · Codex",
+        "color": "#16a085",
+        "text": "我是村民，没额外情报。预言家若跳，请报查验对象和结果。谁急着带票却拿不出依据，我就盯紧谁。",
+        "at": 1794023456680,
+        "runId": "515fa124-9e99-4d7f-94df-bbb4042f45be",
+        "sessionId": "01a1b420-f037-7570-8649-a8194961af6d"
+      },
+      {
+        "id": "2be4100c-924a-4406-8fa1-1425a50b2432",
+        "kind": "agent",
+        "author": "p2",
+        "name": "P2 · Codex",
+        "color": "#3b82f6",
+        "text": "我亮牌：预言家，昨夜查验P3是好人。狼在P1、P4之间，两位亮亮思路，别只跟风！",
+        "at": 1794023460736,
+        "runId": "6ba3d39b-a5a3-4cf0-8cc1-d4570fdca1dd",
+        "sessionId": "01a1b420-f037-7841-a938-096604324f82"
+      },
+      {
+        "id": "0001307b-ecc4-48bf-818a-57a194b55942",
+        "text": "@all 第二轮：根据刚才完整公开发言，回应一处矛盾，指出你最怀疑谁以及理由。最多70字，不调用工具。",
+        "attachments": [],
+        "author": "you",
+        "name": "You",
+        "color": "#64748b",
+        "kind": "human",
+        "at": 1794023478068
+      },
+      {
+        "id": "53570c85-02d4-459e-aac0-594dee34f471",
+        "kind": "agent",
+        "author": "p3",
+        "name": "P3 · Claude",
+        "color": "#a96bd5",
+        "text": "矛盾就在两位预言家：P1说我是狼，P2说我是好人。我确定自己是村民，所以P1在撒谎，就是那只狼。P4，请和P2站一起，票投P1！",
+        "at": 1794023487145,
+        "runId": "17971ba1-c97f-4046-a115-26a8214eabd2",
+        "sessionId": "edb0f564-fba5-4c9e-a104-fa28053de5a1"
+      },
+      {
+        "id": "da52ae21-31a5-4030-986a-63c5d7ebb0c1",
+        "kind": "agent",
+        "author": "p1",
+        "name": "P1 · Claude",
+        "color": "#d68b62",
+        "text": "矛盾在P2：单狼局里真预言家早该先跳，P2却等我报完才对跳，还专给P3发金水拉票。这是狼悍跳！P4、P3，别被收买，P2最可疑。",
+        "at": 1794023497377,
+        "runId": "eaa3a515-c4f2-45a1-8b8e-cc93e2f9ffae",
+        "sessionId": "6bdb910e-b049-4f6a-a963-745e4cc60e18"
+      },
+      {
+        "id": "a53a5b41-0363-4248-b4db-505435a02a36",
+        "kind": "agent",
+        "author": "p2",
+        "name": "P2 · Codex",
+        "color": "#3b82f6",
+        "text": "最怀疑P1：我查验P3是好人，他却报狼人，查验正面冲突！我是真预言家，P1这是悍跳甩锅，建议集中票他。",
+        "at": 1794023512245,
+        "runId": "8903fd66-d541-42fa-ab1d-aeebe7474fdc",
+        "sessionId": "01a1b420-f037-7841-a938-096604324f82"
+      },
+      {
+        "id": "d329e197-5f14-416a-bea7-b69c063cb9ab",
+        "kind": "agent",
+        "author": "p4",
+        "name": "P4 · Codex",
+        "color": "#16a085",
+        "text": "我最疑P1：你若是真预言家，P3是狼，就得解释P2为何作为好人假跳。相比之下，P2真、你悍跳更说得通。",
+        "at": 1794023518455,
+        "runId": "192e5f2d-1de8-4b75-901b-c019915232f6",
+        "sessionId": "01a1b420-f037-7570-8649-a8194961af6d"
+      },
+      {
+        "id": "19acee4e-d927-463c-a306-67dd5a60ca73",
+        "text": "@all 最终投票。根据全部公开讨论，选一个你认为是狼的其他玩家。只输出“投票：P1”这种格式，把数字换成你的真实选择；禁止投自己，不要附加解释。",
+        "attachments": [],
+        "author": "you",
+        "name": "You",
+        "color": "#64748b",
+        "kind": "human",
+        "at": 1794023536330
+      },
+      {
+        "id": "d80b02bb-be4b-4eb7-a6c3-b8b623ee0b2b",
+        "kind": "agent",
+        "author": "p3",
+        "name": "P3 · Claude",
+        "color": "#a96bd5",
+        "text": "投票：P1",
+        "at": 1794023543625,
+        "runId": "6d0931e8-dc49-49dc-a700-906d0c873fa9",
+        "sessionId": "edb0f564-fba5-4c9e-a104-fa28053de5a1"
+      },
+      {
+        "id": "0bbe2644-816a-453c-9926-27b771a12a6e",
+        "kind": "agent",
+        "author": "p1",
+        "name": "P1 · Claude",
+        "color": "#d68b62",
+        "text": "投票：P2",
+        "at": 1794023543625,
+        "runId": "84094b6a-cfce-4065-a86c-dcab0180f09a",
+        "sessionId": "6bdb910e-b049-4f6a-a963-745e4cc60e18"
+      },
+      {
+        "id": "8e612d4a-3c57-4a93-b958-c8e65a08bac9",
+        "kind": "agent",
+        "author": "p2",
+        "name": "P2 · Codex",
+        "color": "#3b82f6",
+        "text": "投票：P1",
+        "at": 1794023560108,
+        "runId": "abcabb97-8b21-4d06-b0f3-82079c61242a",
+        "sessionId": "01a1b420-f037-7841-a938-096604324f82"
+      },
+      {
+        "id": "4a3830fd-b50c-41fa-b46a-bcfb0329d5d6",
+        "kind": "agent",
+        "author": "p4",
+        "name": "P4 · Codex",
+        "color": "#16a085",
+        "text": "投票：P1",
+        "at": 1794023562012,
+        "runId": "3ff29511-6c7a-42c5-bc5f-448ef5093bb9",
+        "sessionId": "01a1b420-f037-7570-8649-a8194961af6d"
+      },
+      {
+        "id": "cb652218-4c0e-48cc-9c37-197e2b76502d",
+        "text": "主持人揭晓：P1 → P2；P2 → P1；P3 → P1；P4 → P1。\n票数：P1 3票，P2 1票，P3 0票，P4 0票。出局：P1。\n秘密身份：P1 狼人；P2 预言家（夜间查验 P3 为好人）；P3、P4 村民。\n好人阵营获胜！",
+        "attachments": [],
+        "author": "you",
+        "name": "You",
+        "color": "#64748b",
+        "kind": "human",
+        "at": 1794023578603
+      }
+    ],
+    "runs": [
+      {
+        "id": "77b83d7e-d7d9-4215-bc96-7d2974e45b83",
+        "memberId": "p1",
+        "backend": "claude",
+        "sessionId": "6bdb910e-b049-4f6a-a963-745e4cc60e18",
+        "rootId": "a515f015-233f-4f6a-93fa-fbe4cbfafbcf",
+        "lastSeq": -1,
+        "status": "completed",
+        "at": 1794023419803,
+        "tools": [],
+        "endedAt": 1794023429669
+      },
+      {
+        "id": "6ba3d39b-a5a3-4cf0-8cc1-d4570fdca1dd",
+        "memberId": "p2",
+        "backend": "codex",
+        "sessionId": "01a1b420-f037-7841-a938-096604324f82",
+        "rootId": "a515f015-233f-4f6a-93fa-fbe4cbfafbcf",
+        "lastSeq": -1,
+        "status": "completed",
+        "at": 1794023419803,
+        "tools": [],
+        "endedAt": 1794023460736
+      },
+      {
+        "id": "07e87846-f3f5-4bc0-a647-a0b198dcbef7",
+        "memberId": "p3",
+        "backend": "claude",
+        "sessionId": "edb0f564-fba5-4c9e-a104-fa28053de5a1",
+        "rootId": "a515f015-233f-4f6a-93fa-fbe4cbfafbcf",
+        "lastSeq": -1,
+        "status": "completed",
+        "at": 1794023419803,
+        "tools": [],
+        "endedAt": 1794023427401
+      },
+      {
+        "id": "515fa124-9e99-4d7f-94df-bbb4042f45be",
+        "memberId": "p4",
+        "backend": "codex",
+        "sessionId": "01a1b420-f037-7570-8649-a8194961af6d",
+        "rootId": "a515f015-233f-4f6a-93fa-fbe4cbfafbcf",
+        "lastSeq": -1,
+        "status": "completed",
+        "at": 1794023419803,
+        "tools": [],
+        "endedAt": 1794023456680
+      },
+      {
+        "id": "eaa3a515-c4f2-45a1-8b8e-cc93e2f9ffae",
+        "memberId": "p1",
+        "backend": "claude",
+        "sessionId": "6bdb910e-b049-4f6a-a963-745e4cc60e18",
+        "rootId": "0001307b-ecc4-48bf-818a-57a194b55942",
+        "lastSeq": -1,
+        "status": "completed",
+        "at": 1794023478068,
+        "tools": [],
+        "endedAt": 1794023497377
+      },
+      {
+        "id": "8903fd66-d541-42fa-ab1d-aeebe7474fdc",
+        "memberId": "p2",
+        "backend": "codex",
+        "sessionId": "01a1b420-f037-7841-a938-096604324f82",
+        "rootId": "0001307b-ecc4-48bf-818a-57a194b55942",
+        "lastSeq": -1,
+        "status": "completed",
+        "at": 1794023478068,
+        "tools": [],
+        "endedAt": 1794023512245
+      },
+      {
+        "id": "17971ba1-c97f-4046-a115-26a8214eabd2",
+        "memberId": "p3",
+        "backend": "claude",
+        "sessionId": "edb0f564-fba5-4c9e-a104-fa28053de5a1",
+        "rootId": "0001307b-ecc4-48bf-818a-57a194b55942",
+        "lastSeq": -1,
+        "status": "completed",
+        "at": 1794023478068,
+        "tools": [],
+        "endedAt": 1794023487145
+      },
+      {
+        "id": "192e5f2d-1de8-4b75-901b-c019915232f6",
+        "memberId": "p4",
+        "backend": "codex",
+        "sessionId": "01a1b420-f037-7570-8649-a8194961af6d",
+        "rootId": "0001307b-ecc4-48bf-818a-57a194b55942",
+        "lastSeq": -1,
+        "status": "completed",
+        "at": 1794023478068,
+        "tools": [],
+        "endedAt": 1794023518455
+      },
+      {
+        "id": "84094b6a-cfce-4065-a86c-dcab0180f09a",
+        "memberId": "p1",
+        "backend": "claude",
+        "sessionId": "6bdb910e-b049-4f6a-a963-745e4cc60e18",
+        "rootId": "19acee4e-d927-463c-a306-67dd5a60ca73",
+        "lastSeq": -1,
+        "status": "completed",
+        "at": 1794023536330,
+        "tools": [],
+        "endedAt": 1794023543625
+      },
+      {
+        "id": "abcabb97-8b21-4d06-b0f3-82079c61242a",
+        "memberId": "p2",
+        "backend": "codex",
+        "sessionId": "01a1b420-f037-7841-a938-096604324f82",
+        "rootId": "19acee4e-d927-463c-a306-67dd5a60ca73",
+        "lastSeq": -1,
+        "status": "completed",
+        "at": 1794023536330,
+        "tools": [],
+        "endedAt": 1794023560108
+      },
+      {
+        "id": "6d0931e8-dc49-49dc-a700-906d0c873fa9",
+        "memberId": "p3",
+        "backend": "claude",
+        "sessionId": "edb0f564-fba5-4c9e-a104-fa28053de5a1",
+        "rootId": "19acee4e-d927-463c-a306-67dd5a60ca73",
+        "lastSeq": -1,
+        "status": "completed",
+        "at": 1794023536330,
+        "tools": [],
+        "endedAt": 1794023543625
+      },
+      {
+        "id": "3ff29511-6c7a-42c5-bc5f-448ef5093bb9",
+        "memberId": "p4",
+        "backend": "codex",
+        "sessionId": "01a1b420-f037-7570-8649-a8194961af6d",
+        "rootId": "19acee4e-d927-463c-a306-67dd5a60ca73",
+        "lastSeq": -1,
+        "status": "completed",
+        "at": 1794023536330,
+        "tools": [],
+        "endedAt": 1794023562012
+      }
+    ],
+    "sessions": {
+      "codex:p4": "01a1b420-f037-7570-8649-a8194961af6d",
+      "codex:p2": "01a1b420-f037-7841-a938-096604324f82",
+      "claude:p1": "6bdb910e-b049-4f6a-a963-745e4cc60e18",
+      "claude:p3": "edb0f564-fba5-4c9e-a104-fa28053de5a1"
+    },
+    "budgets": {
+      "76d47ce2-ae09-4841-97c5-6f020d05e733": 4,
+      "a515f015-233f-4f6a-93fa-fbe4cbfafbcf": 4,
+      "0001307b-ecc4-48bf-818a-57a194b55942": 4,
+      "19acee4e-d927-463c-a306-67dd5a60ca73": 4,
+      "cb652218-4c0e-48cc-9c37-197e2b76502d": 4
+    }
+  }
+}

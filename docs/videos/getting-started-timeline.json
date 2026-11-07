@@ -13,7 +13,7 @@
       "source": "docs/videos/install-web.png",
       "duration": 15,
       "title": "安装 Web 版",
-      "narration": "先安装 DSH，再通过插件命令添加 Agentroom 的当前源码版，最后运行 dsh web。仓库已经包含预构建文件，安装时不需要额外编译。"
+      "narration": "先安装 DSH，再从原来的 Intelli Jungle 仓库安装插件，最后运行 dsh web。本片演示零点二版本的 CLI 增强，需合并到上游后从原地址获取。"
     },
     {
       "kind": "card",

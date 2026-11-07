@@ -1,14 +1,16 @@
 # 视频制作与验证记录
 
+提交位置：[zhangyanan110199-art/dsh-agentroom](https://github.com/zhangyanan110199-art/dsh-agentroom)。fork 仅用于提交权限；视频、README 和包元数据中的安装来源保持 Intelli-Jungle 原仓库。v0.2.0 CLI 增强等待上游合并，未宣称上游已发布该版本。
+
 ## 安装与上手
 
-- 成片：`getting-started.mp4`，1920 × 1080，30 fps，H.264 / AAC，约 2 分 20 秒。
+- 成片：`getting-started.mp4`，1920 × 1080，30 fps，H.264 / AAC，约 2 分 21 秒。
 - 界面：真实 DSH Web 0.2.1-rc.5，隔离数据目录，Agentroom 0.2.0。
 - CLI：本机 Codex CLI 0.167.0-alpha.3.2。聊天、持续会话和三个成员的并行回复均来自真实请求，没有预写模型回复。
 - 安装画面为说明卡；后续画面为实际浏览器操作录屏。等待已剪辑；配置镜头适度放慢。
 - 旁白使用 macOS Tingting 中文系统语音合成；字幕、封面和编排由本次制作生成。没有背景音乐或第三方素材授权依赖。
 - 按章节抽取帧检查文字、裁切和布局；整片执行解码检查。
-- CLI 集成提供 DSH、Codex、Claude Code 三种成员执行方式。Codex 使用只读沙箱；Claude 禁用工具及外部 MCP。Claude 的成功调用尚待本机登录后复验；不能将其协议测试当作真实模型验证。
+- CLI 集成提供 DSH、Codex、Claude Code 三种成员执行方式。Codex 使用只读沙箱；Claude 禁用工具及外部 MCP。Claude Code 2.1.319 已通过真实回复、同一 Session 续接与四人混合局验证。
 
 ## 本地复用
 
@@ -25,3 +27,14 @@
 实际 Codex 测试：首次请求记住“蓝鲸”，续接同一 CLI Session 后正确回答暗号；DSH 插件内的 Planner 单独回复、Planner / Coder / Reviewer 并行回复均完成。
 
 协议参考：[Codex 非交互模式](https://learn.chatgpt.com/docs/non-interactive-mode)。实际参数另外以本机 `codex exec --help`、`codex exec resume --help`、`claude --help` 核对。
+
+## Codex × Claude 狼人杀
+
+- 四名玩家、两种 CLI：P1 / P3 使用 Claude Code，P2 / P4 使用 Codex CLI。每名玩家有独立持续会话。
+- 简化的一夜规则：一狼、一预言家、两村民；不设夜间击杀；预言家在自己的角色指令中获得“P3 为好人”的查验结果。两轮公开讨论后投票，最高票出局，平票则并列最高票者全部出局，出局者含狼人则好人获胜。
+- 角色分配与规则由主持人设定；各 CLI 的公开发言和投票由模型真实生成，没有预写回复或指定胜负。共享时间线不提供所有人的角色指令；这是一场角色扮演演示，不是对抗性隐藏信息安全实验。
+- 实际剧情：P1（Claude 狼人）悍跳预言家，声称 P3 是狼；P2（Codex 真预言家）指出 P3 是好人；P4 追问相互矛盾的身份解释。
+- 实际投票：P1→P2，P2→P1，P3→P1，P4→P1。P1 以 3 票出局，好人获胜。
+- `werewolf-transcript.md` 与 `werewolf-session.json` 保留完整公开对话、角色配置和执行记录，可用于文章引用与复盘。导入 JSON 会清除旧执行关联并以归档状态打开；导入前若 `/tmp/agentroom-demo` 在本机不存在，请先在 JSON 中把 `room.cwd` 改为已存在的绝对路径，再导入并恢复。
+- 成片剪掉模型等待时间，保留创建 Room、规则、两轮发言、投票和揭晓。封面、字幕、旁白与剪辑时间点一并保存。
+- 本机浏览器使用系统代理而 CLI 未继承代理，最初导致登录 403。给登录进程及 DSH 宿主提供现有 `HTTPS_PROXY` / `HTTP_PROXY` 后，官方登录与真实请求成功；没有修改认证机制或复用网页登录 cookie。
