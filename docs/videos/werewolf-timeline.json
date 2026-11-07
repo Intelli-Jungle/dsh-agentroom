@@ -13,79 +13,108 @@
       "source": "docs/videos/werewolf-cover.png",
       "duration": 8,
       "title": "CLI 狼人杀",
-      "narration": "天黑请闭眼。当 Codex 遇上 Claude Code，谁能藏住自己的狼人身份？"
+      "narration": "天黑，请闭眼。今天，把 Codex 和 Claude 请到同一张桌上。谁能藏住狼人身份，谁又能找出破绽？",
+      "rendered_start": 0,
+      "rendered_duration": 11.167
     },
     {
       "source": "work/recordings/werewolf.webm",
       "start": 2.125,
       "title": "01 新建狼人杀 Room",
       "caption": "四名玩家，来自 Codex CLI 与 Claude Code。",
-      "narration": "先创建一个全新的狼人杀房间。四名玩家分别由 Codex 和 Claude Code 驱动，彼此保持独立会话。",
-      "duration": 13
+      "narration": "先开一个新房间，四位玩家入座。两位用 Codex，两位用 Claude。每个人，都有自己独立的会话。",
+      "duration": 13,
+      "rendered_start": 11.167,
+      "rendered_duration": 13.0
     },
     {
       "source": "work/recordings/werewolf.webm",
       "start": 15.129,
       "title": "02 天黑请闭眼",
       "caption": "一狼、一预言家、两村民；身份通过各自角色指令下发。",
-      "narration": "这一局采用简化的一夜规则。身份分别写入各自的角色指令，预言家已经完成一次夜间查验。共享时间线只展示公开讨论。",
-      "duration": 15
+      "narration": "规则很简单：一只狼，一位预言家，两位村民。这一夜不设击杀，预言家已经查过一个人。身份只写进各自的角色指令，公开区只留发言。",
+      "duration": 15,
+      "rendered_start": 24.167,
+      "rendered_duration": 15.0
     },
     {
       "source": "work/recordings/werewolf.webm",
       "start": 30.129,
       "title": "03 第一轮 · 公开发言",
       "caption": "@all 并行唤醒四位玩家，不预写模型回答。",
-      "narration": "主持人用艾特 all 开始第一轮。各个 CLI 独立推理，再把自己的公开发言发回同一个房间。",
-      "duration": 10
+      "narration": "天亮了。主持人艾特 all，第一轮发言开始。四位玩家各自思考，再把自己的判断发到房间里。",
+      "duration": 10,
+      "rendered_start": 39.167,
+      "rendered_duration": 10.467
     },
     {
       "source": "work/recordings/werewolf.webm",
       "start": 75.392,
       "title": "04 两个预言家，谁在说谎？",
       "caption": "Claude 狼人悍跳：P3 是狼；Codex 预言家：P3 是好人。",
-      "narration": "冲突出现了。一号 Claude 玩家自称预言家，指认三号是狼。二号 Codex 也跳预言家，却给出完全相反的查验。",
-      "duration": 13
+      "narration": "咦，两个预言家？一号说，三号是狼。二号却说，三号是好人。同一个人，两份相反的查验。谁在说谎？",
+      "duration": 13,
+      "rendered_start": 49.633,
+      "rendered_duration": 13.0
     },
     {
       "source": "work/recordings/werewolf.webm",
       "start": 88.392,
       "title": "05 第二轮 · 质疑与辩护",
       "caption": "所有玩家根据第一轮的共享记录继续推理。",
-      "narration": "第二轮，每位玩家都能读到第一轮的完整发言。现在开始质疑和辩护，持续会话会记住自己的身份。",
-      "duration": 10
+      "narration": "进入第二轮。大家已经看过彼此的发言，这回，就得拿出证据了。是继续坚持，还是改变判断？",
+      "duration": 10,
+      "rendered_start": 62.633,
+      "rendered_duration": 10.433
     },
     {
       "source": "work/recordings/werewolf.webm",
       "start": 133.662,
       "title": "06 谁的证据站得住",
       "caption": "P4 追问：如果 P1 为真，为什么好人 P2 要假跳？",
-      "narration": "四号抓住了逻辑矛盾：如果一号是真的，二号作为好人为什么要假跳？不同 CLI 正在根据同一份公开记录，互相质疑。",
-      "duration": 13
+      "narration": "四号抓住了一个问题：如果一号真是预言家，那二号作为好人，为什么还要假跳？这个矛盾，狼人得解释清楚。",
+      "duration": 13,
+      "rendered_start": 73.067,
+      "rendered_duration": 13.0
     },
     {
       "source": "work/recordings/werewolf.webm",
       "start": 146.663,
       "title": "07 投票时刻",
       "caption": "每位玩家只投一票，不能投自己。",
-      "narration": "讨论结束。现在每位玩家只投一票，不能投给自己。我们按实际投票统计，不预设胜负。",
-      "duration": 10
+      "narration": "好，讨论到这里。现在每人投一票，不能投自己。究竟相信谁，是时候做决定了。",
+      "duration": 10,
+      "rendered_start": 86.067,
+      "rendered_duration": 10.0
     },
     {
       "source": "work/recordings/werewolf.webm",
       "start": 175.902,
       "title": "08 票数公开",
       "caption": "独立投票已完成，即将揭晓身份。",
-      "narration": "四位玩家已经完成投票。每一票都来自各自的 CLI 会话。现在公布统计和真实身份。",
-      "duration": 13
+      "narration": "四张票都到齐了。一号投二号，另外三位，全都投给了一号。三比一。接下来，揭晓身份。",
+      "duration": 13,
+      "rendered_start": 96.067,
+      "rendered_duration": 13.0
     },
     {
       "source": "work/recordings/werewolf.webm",
       "start": 188.902,
       "title": "09 身份揭晓",
       "caption": "真实票数 3:1，P1 狼人出局，好人获胜。",
-      "narration": "最终票数三比一，一号狼人出局，好人获胜。二号是真预言家，三号和四号是村民。投票和发言都来自这次真实运行。",
-      "duration": 16
+      "narration": "一号，确实是狼人！好人获胜。二号是真预言家，三号和四号都是村民。这场对跳、质疑和投票，全部来自刚才这局真实对话。",
+      "duration": 16,
+      "rendered_start": 109.067,
+      "rendered_duration": 16.0
     }
-  ]
+  ],
+  "voice": {
+    "engine": "edge-tts",
+    "name": "zh-CN-XiaoxiaoNeural",
+    "rate": "-2%",
+    "pitch": "+0Hz",
+    "leadIn": 0.22,
+    "tailOut": 0.45
+  },
+  "rendered_duration": 125.067
 }

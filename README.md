@@ -8,25 +8,25 @@
 
 ## 视频教程
 
-### ① 安装与上手 · 2 分 21 秒
+### ① 安装与上手 · 2 分 34 秒
 
 [![观看：DSH Agentroom 安装与上手](docs/videos/getting-started-cover.png)](docs/videos/getting-started.mp4?raw=1)
 
 **[播放 / 下载 MP4](docs/videos/getting-started.mp4?raw=1)** · [中文字幕](docs/videos/getting-started.zh-CN.srt)
 
-从 Web / Desktop 安装开始，演示新建 Room、角色与执行方式配置、`@planner` 单独聊天、`@all` 并行协作、独立 CLI 会话记录、自动接力设置和导出入口。支持范围为 DSH 原生、Codex CLI 与 Claude Code；本片聊天画面来自 **Codex CLI 真实调用**。1080p、中文合成旁白与底部字幕，模型等待时间已剪除。
+从 Web / Desktop 安装开始，演示新建 Room、角色与执行方式配置、`@planner` 单独聊天、`@all` 并行协作、独立 CLI 会话记录、自动接力设置和导出入口。支持范围为 DSH 原生、Codex CLI 与 Claude Code；本片聊天画面来自 **Codex CLI 真实调用**。1080p、中文神经网络配音与逐句字幕，模型等待时间已剪除。
 
 | 时间 | 内容 |
 | --- | --- |
-| 00:08 | Web 安装命令 |
-| 00:23 | Desktop 安装与 CLI 登录 |
-| 00:37 | 进入 Agentroom、创建房间 |
-| 00:59 | 配置执行方式与角色 |
-| 01:12 | 单独提及与真实回复 |
-| 01:34 | 多成员并行讨论 |
-| 01:58 | 接力设置、主题和导出 |
+| 00:12 | Web 安装命令 |
+| 00:28 | Desktop 安装与 CLI 登录 |
+| 00:43 | 进入 Agentroom、创建房间 |
+| 01:06 | 配置执行方式与角色 |
+| 01:20 | 单独提及与真实回复 |
+| 01:44 | 多成员并行讨论 |
+| 02:08 | 接力设置、主题和导出 |
 
-### ② Codex × Claude 狼人杀 · 2 分 01 秒
+### ② Codex × Claude 狼人杀 · 2 分 05 秒
 
 [![观看：Codex 与 Claude Code 狼人杀](docs/videos/werewolf-cover.png)](docs/videos/werewolf.mp4?raw=1)
 
@@ -36,13 +36,13 @@
 
 | 时间 | 内容 |
 | --- | --- |
-| 00:08 | 创建四人混合 CLI 房间 |
-| 00:21 | 身份与一夜规则 |
-| 00:36 | 第一轮公开发言 |
-| 00:46 | 两个预言家给出相反查验 |
-| 00:59 | 第二轮质疑与辩护 |
-| 01:22 | 最终投票 |
-| 01:45 | 统计、身份揭晓与结果 |
+| 00:11 | 创建四人混合 CLI 房间 |
+| 00:24 | 身份与一夜规则 |
+| 00:39 | 第一轮公开发言 |
+| 00:50 | 两个预言家给出相反查验 |
+| 01:03 | 第二轮质疑与辩护 |
+| 01:26 | 最终投票 |
+| 01:49 | 统计、身份揭晓与结果 |
 
 视频、封面与字幕可直接用于介绍本项目的文章；引用时请注明 Intelli-Jungle / dsh-agentroom。录制与验证说明见 [视频制作记录](docs/videos/production.md)。
 
