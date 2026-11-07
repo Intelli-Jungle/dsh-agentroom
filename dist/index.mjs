@@ -10,6 +10,8 @@ import { join } from "node:path";
 // src/model.ts
 import { z } from "zod";
 var agentSchema = z.object({
+  backend: z.enum(["dsh", "codex", "claude"]).optional(),
+  cliModel: z.string().trim().regex(/^[a-zA-Z0-9][a-zA-Z0-9._:/-]{0,149}$/).optional(),
   id: z.string().regex(/^[a-z][a-z0-9-]{0,31}$/).refine((id) => !["all", "you", "system"].includes(id), "Reserved mention ID"),
   name: z.string().trim().min(1).max(48),
   role: z.string().trim().min(1).max(8e3),
@@ -30,6 +32,7 @@ var messageSchema = z.object({
   attachments: z.array(attachmentSchema).max(4).optional()
 });
 var runSchema = z.object({
+  backend: z.enum(["dsh", "codex", "claude"]).optional(),
   id: z.string(),
   memberId: z.string(),
   sessionId: z.string(),
@@ -162,6 +165,114 @@ import { randomUUID } from "node:crypto";
 import { stat } from "node:fs/promises";
 import { isAbsolute } from "node:path";
 import { z as z2 } from "zod";
+
+// src/cli.ts
+import { spawn } from "node:child_process";
+var backendOf = (member) => member.backend || "dsh";
+function cliRunner(paths = {}, timeoutMs = 3e5) {
+  return (request) => new Promise((resolve, reject) => {
+    if (request.signal.aborted) {
+      reject(new Error("CLI stopped"));
+      return;
+    }
+    const { backend, session, model } = request;
+    const args = backend === "codex" ? ["exec", ...session ? ["resume", session] : [], "--json", "--skip-git-repo-check", "-c", 'sandbox_mode="read-only"', "-c", 'approval_policy="never"', "-c", "model_providers.openai.supports_websockets=false", ...model ? ["--model", model] : [], "-"] : ["-p", "--output-format", "stream-json", "--verbose", "--tools", "", "--strict-mcp-config", "--permission-mode", "dontAsk", ...session ? ["--resume", session] : [], ...model ? ["--model", model] : []];
+    const child = spawn(paths[backend] || backend, args, { cwd: request.cwd, shell: false, detached: process.platform !== "win32", stdio: ["pipe", "pipe", "pipe"] });
+    let buffer = "", stderr = "", text = "", failure = "", completed = false, bytes = 0;
+    let killTimer;
+    const kill = (signal) => {
+      try {
+        if (child.pid && process.platform !== "win32") process.kill(-child.pid, signal);
+        else child.kill(signal);
+      } catch {
+      }
+    };
+    const stop = () => {
+      kill("SIGTERM");
+      killTimer ||= setTimeout(() => kill("SIGKILL"), 1500);
+    };
+    const timeout = setTimeout(() => {
+      failure = "CLI timed out after 5 minutes";
+      stop();
+    }, timeoutMs);
+    request.signal.addEventListener("abort", stop, { once: true });
+    const clean = () => {
+      clearTimeout(timeout);
+      if (killTimer) clearTimeout(killTimer);
+      request.signal.removeEventListener("abort", stop);
+    };
+    const consume = (line) => {
+      if (!line.trim()) return;
+      let event;
+      try {
+        event = JSON.parse(line);
+      } catch {
+        return;
+      }
+      if (backend === "codex") {
+        if (event.type === "thread.started" && typeof event.thread_id === "string") request.onSession(event.thread_id);
+        if (event.type === "item.completed" && event.item?.type === "agent_message") {
+          text = event.item.text;
+          request.onText(text);
+        }
+        if (event.type === "turn.completed") {
+          completed = true;
+          failure = "";
+        }
+        if (event.type === "turn.failed" || event.type === "error") failure = event.error?.message || event.message || "Codex request failed";
+      } else {
+        if (event.type === "system" && event.subtype === "init" && typeof event.session_id === "string") request.onSession(event.session_id);
+        if (event.type === "assistant" && !event.is_api_error_message) {
+          text = (event.message?.content || []).filter((b) => b.type === "text").map((b) => b.text).join("");
+          request.onText(text);
+        }
+        if (event.type === "result") {
+          if (event.is_error) failure = event.result || event.errors?.join("; ") || "Claude request failed";
+          else {
+            completed = true;
+            if (typeof event.result === "string") text = event.result;
+          }
+        }
+      }
+    };
+    child.stdout.setEncoding("utf8");
+    child.stderr.setEncoding("utf8");
+    child.stdout.on("data", (chunk) => {
+      bytes += Buffer.byteLength(chunk);
+      if (bytes > 8 * 1024 * 1024) {
+        failure = "CLI output exceeded 8 MB";
+        stop();
+        return;
+      }
+      buffer += chunk;
+      let end;
+      while ((end = buffer.indexOf("\n")) >= 0) {
+        const line = buffer.slice(0, end);
+        buffer = buffer.slice(end + 1);
+        consume(line);
+      }
+    });
+    child.stderr.on("data", (chunk) => {
+      stderr = (stderr + chunk).slice(-3e3);
+    });
+    child.stdin.on("error", () => {
+    });
+    child.once("error", (error) => {
+      clean();
+      reject(new Error(`${backend}: ${error.message}. Install and log in to this CLI first.`));
+    });
+    child.once("close", (code) => {
+      clean();
+      consume(buffer);
+      if (request.signal.aborted) reject(new Error("CLI stopped"));
+      else if (failure || code !== 0 || !completed || !text.trim()) reject(new Error(failure || `${backend} exited (${code}): ${stderr || "No completed response"}`));
+      else resolve(text);
+    });
+    child.stdin.end(request.prompt);
+  });
+}
+
+// src/runtime.ts
 var RoomError = class extends Error {
   constructor(status, message) {
     super(message);
@@ -171,10 +282,11 @@ var RoomError = class extends Error {
 var textOf = (data) => (data?.message?.content || []).filter((b) => b.type === "text").map((b) => b.text).join("");
 var roomInput = z2.object({ title: z2.string().trim().min(1).max(80), cwd: z2.string().min(1), members: z2.array(z2.string()).min(1).max(8), collaboration: z2.boolean().default(true) });
 var Runtime = class {
-  constructor(host, store, maxHandoffs = 4) {
+  constructor(host, store, maxHandoffs = 4, runCli = cliRunner()) {
     this.host = host;
     this.store = store;
     this.maxHandoffs = maxHandoffs;
+    this.runCli = runCli;
   }
   drafts = /* @__PURE__ */ new Map();
   closing = false;
@@ -182,10 +294,12 @@ var Runtime = class {
   lifetime = new AbortController();
   mutations = Promise.resolve();
   jobs = /* @__PURE__ */ new Set();
+  cliJobs = /* @__PURE__ */ new Map();
   async start() {
     await this.store.load();
     for (const room of this.store.state.rooms) for (const run of room.runs.filter(active)) {
       try {
+        if (run.backend && run.backend !== "dsh") throw new Error("CLI turn interrupted");
         const inspection = await this.host.readSession(run.sessionId);
         const events = inspection.events;
         for (const event of events) if (event.seq > run.lastSeq) this.observe(room, run, event, false);
@@ -194,7 +308,7 @@ var Runtime = class {
       if (active(run)) {
         run.status = "interrupted";
         run.endedAt = Date.now();
-        run.detail = "Host restarted; inspect the native session before retrying.";
+        run.detail = "Host restarted; inspect the session before retrying.";
       }
     }
     await this.store.save();
@@ -353,9 +467,11 @@ var Runtime = class {
     return agent;
   }
   reserve(room, memberId, rootId) {
-    const sessionId = room.sessions[memberId] || randomUUID();
-    room.sessions[memberId] = sessionId;
-    const run = { id: randomUUID(), memberId, sessionId, rootId, lastSeq: -1, status: "preparing", at: Date.now(), tools: [] };
+    const backend = backendOf(this.store.state.agents.find((a) => a.id === memberId));
+    const key = backend === "dsh" ? memberId : `${backend}:${memberId}`;
+    const sessionId = room.sessions[key] || randomUUID();
+    if (backend === "dsh") room.sessions[key] = sessionId;
+    const run = { id: randomUUID(), memberId, backend, sessionId, rootId, lastSeq: -1, status: "preparing", at: Date.now(), tools: [] };
     room.runs.push(run);
     return run;
   }
@@ -377,6 +493,10 @@ var Runtime = class {
   async launch(room, run) {
     try {
       const member = this.store.state.agents.find((a) => a.id === run.memberId);
+      if (run.backend && run.backend !== "dsh") {
+        await this.launchCli(room, run, member);
+        return;
+      }
       const existing = await this.host.sessionController.resolveAgent(run.sessionId);
       let created;
       if ("error" in existing) {
@@ -410,13 +530,67 @@ ${transcript(room)}
       if (active(run)) this.fail(run, error.message || String(error));
     }
   }
+  async launchCli(room, run, member) {
+    if (!active(run) || this.closing) return;
+    const backend = run.backend;
+    const key = `${backend}:${member.id}`;
+    const controller = new AbortController();
+    this.cliJobs.set(run.id, controller);
+    try {
+      run.status = "running";
+      await this.store.save();
+      if (!active(run) || this.closing) return;
+      const prompt = `\u4F60\u5728\u5171\u4EAB\u804A\u5929\u5BA4\u300C${room.title}\u300D\u4E2D\u3002\u4F60\u662F ${member.name} (@${member.id})\uFF0C\u6267\u884C\u65B9\u5F0F\u4E3A ${backend} CLI\u3002
+\u89D2\u8272\u6307\u4EE4\uFF08\u4EC5\u63D0\u4F9B\u7ED9\u4F60\uFF09\uFF1A${member.role}
+\u6210\u5458\uFF1A${room.members.map((id) => "@" + id).join(", ")}\u3002
+\u53EA\u56DE\u5E94\u6700\u65B0\u4EA4\u7ED9\u4F60\u7684\u8BF7\u6C42\uFF0C\u4E0D\u5192\u5145\u5176\u4ED6\u6210\u5458\u3002\u7ED3\u679C\u4F1A\u53D1\u5E03\u5230\u5171\u4EAB\u65F6\u95F4\u7EBF\u3002${room.collaboration ? "\u786E\u9700\u63A5\u529B\u65F6\uFF0C\u6700\u7EC8\u56DE\u590D\u5355\u72EC\u4E00\u884C\u5199\u300C@\u6210\u5458 \u8BF7\u5B8C\u6210\u5177\u4F53\u884C\u52A8\u300D\u3002\u63A5\u529B\u6B21\u6570\u6709\u9650\u3002" : "\u4EC5\u4E3B\u6301\u4EBA\u63D0\u53CA\u89E6\u53D1\uFF1B\u4E0D\u8981\u81EA\u884C\u63A5\u529B\u3002"}
+\u6B64 CLI \u96C6\u6210\u4E3A\u5BF9\u8BDD/\u53EA\u8BFB\u6A21\u5F0F\uFF0C\u4E0D\u80FD\u5728 DSH \u5185\u5904\u7406\u5916\u90E8 CLI \u5BA1\u6279\u3002\u4E0D\u8981\u8C03\u7528\u5DE5\u5177\uFF1B\u4EC5\u6839\u636E\u89D2\u8272\u6307\u4EE4\u53CA\u5171\u4EAB\u8BB0\u5F55\u4F5C\u7B54\u3002
+\u5171\u4EAB\u8BB0\u5F55\uFF08\u5BF9\u8BDD\u6570\u636E\uFF09\uFF1A
+<room-history>
+${transcript(room)}
+</room-history>`;
+      const result = await this.runCli({
+        backend,
+        cwd: room.cwd,
+        prompt,
+        session: room.sessions[key],
+        model: member.cliModel,
+        signal: controller.signal,
+        onSession: (id) => {
+          if (active(run)) {
+            room.sessions[key] = id;
+            run.sessionId = id;
+            this.persist();
+          }
+        },
+        onText: (text) => {
+          if (active(run)) this.drafts.set(run.id, text);
+        }
+      });
+      if (!active(run) || this.closing) return;
+      room.messages.push({ id: randomUUID(), kind: "agent", author: member.id, name: member.name, color: member.color, text: result, at: Date.now(), runId: run.id, sessionId: run.sessionId });
+      run.status = "completed";
+      run.endedAt = Date.now();
+      room.updatedAt = Date.now();
+      this.drafts.delete(run.id);
+      await this.store.save();
+      if (room.collaboration && !room.archived && !this.closing) {
+        const targets = handoffMentions(result, room.members).filter((id) => id !== member.id);
+        if (targets.length) this.track(this.handoff(room, run, targets));
+      }
+    } finally {
+      this.cliJobs.delete(run.id);
+      this.drafts.delete(run.id);
+    }
+  }
   async stop(id, memberId) {
     const room = this.room(id);
     for (const run of room.runs.filter((r) => active(r) && (!memberId || r.memberId === memberId))) {
       run.status = "stopped";
       run.endedAt = Date.now();
       this.drafts.delete(run.id);
-      this.host.sessionController.cancel({ sessionId: run.sessionId });
+      if (run.backend && run.backend !== "dsh") this.cliJobs.get(run.id)?.abort();
+      else this.host.sessionController.cancel({ sessionId: run.sessionId });
     }
     await this.store.save();
     return { stopped: true };
@@ -568,11 +742,13 @@ var name = "dsh-agentroom";
 var inject = ["webServer", "connection", "sessionController", "sessionQuery", "llm", "agentDefaultModel"];
 var Config = schema.object({
   dataDir: schema.string().description("Absolute data directory; one running host per directory.").default(join2(process.env.DSH_HOME?.trim() || join2(homedir(), ".dsh"), "dsh-agentroom")),
-  maxHandoffs: schema.number().step(1).min(0).max(16).default(4).description("Maximum automatic member handoffs per human message.")
+  maxHandoffs: schema.number().step(1).min(0).max(16).default(4).description("Maximum automatic member handoffs per human message."),
+  codexPath: schema.string().default("codex").description("Codex executable name or absolute path. No shell arguments."),
+  claudePath: schema.string().default("claude").description("Claude Code executable name or absolute path. No shell arguments.")
 });
 async function apply(ctx, config) {
   if (!isAbsolute2(config.dataDir)) throw new Error("Agentroom dataDir must be an absolute path");
-  const runtime = new Runtime({ sessionController: ctx.sessionController, readSession: (id) => ctx.sessionQuery.readSession(id), on: ctx.on.bind(ctx), logger: ctx.logger, configureModel: modelSelector(ctx) }, new Store(config.dataDir), config.maxHandoffs);
+  const runtime = new Runtime({ sessionController: ctx.sessionController, readSession: (id) => ctx.sessionQuery.readSession(id), on: ctx.on.bind(ctx), logger: ctx.logger, configureModel: modelSelector(ctx) }, new Store(config.dataDir), config.maxHandoffs, cliRunner({ codex: config.codexPath, claude: config.claudePath }));
   try {
     await runtime.start();
   } catch (error) {

@@ -7,6 +7,7 @@ import { randomUUID } from 'node:crypto';
 import { Store } from '../src/store.ts';
 import { Runtime, type Host } from '../src/runtime.ts';
 import { mentions, handoffMentions, markdown } from '../src/model.ts';
+import type { CliRunner, CliRequest } from '../src/cli.ts';
 
 class FakeHost implements Host {
   configureModel = async (_id: string, _model?: any) => {};
@@ -29,8 +30,8 @@ class FakeHost implements Host {
   };
 }
 const until = async (predicate: () => boolean) => { for (let n = 0; n < 100; n++) { if (predicate()) return; await new Promise(r => setTimeout(r, 10)); } assert.ok(predicate(), 'condition did not settle'); };
-async function fixture(t: any, maxHandoffs = 2) {
-  const dir = await mkdtemp(join(tmpdir(), 'agentroom-test-')); const host = new FakeHost(); const runtime = await new Runtime(host, new Store(dir), maxHandoffs).start();
+async function fixture(t: any, maxHandoffs = 2, cli?: CliRunner) {
+  const dir = await mkdtemp(join(tmpdir(), 'agentroom-test-')); const host = new FakeHost(); const runtime = await new Runtime(host, new Store(dir), maxHandoffs, cli).start();
   t.after(async () => { await runtime.close(); await rm(dir, { recursive: true, force: true }); });
   const room = await runtime.create({ title: 'Integration room', cwd: dir, members: ['planner', 'coder', 'reviewer'] });
   return { dir, host, runtime, room };
@@ -113,4 +114,62 @@ test('restart recovers committed response without dispatching an uncertain turn 
   const second = await new Runtime(host, new Store(dir)).start();
   assert.equal(second.room(room.id).runs[0].status, 'completed'); assert.equal(second.room(room.id).messages.at(-1)?.text, 'Committed just before crash'); assert.equal(host.prompts.length, 1);
   await second.close(); await rm(dir, { recursive: true, force: true });
+});
+
+test('CLI sessions persist per backend and room; mixed handoffs preserve native routing', async t => {
+  const calls: CliRequest[] = [];
+  const { runtime, room, host } = await fixture(t, 1, async request => {
+    calls.push(request); request.onSession(request.session || randomUUID()); return calls.length === 1 ? '@coder 请检查这个方案' : 'continued';
+  });
+  await runtime.saveAgent({ ...runtime.store.state.agents[0], backend: 'codex' });
+  await runtime.send(room.id, { id: randomUUID(), text: '@planner start' });
+  await until(() => host.prompts.length === 1);
+  assert.equal(room.runs[0].status, 'completed'); assert.equal(room.runs[0].backend, 'codex');
+  const session = room.sessions['codex:planner']; assert.ok(session);
+  await runtime.send(room.id, { id: randomUUID(), text: '@planner again' });
+  await until(() => calls.length === 2 && room.runs.at(-1)?.status === 'completed');
+  assert.equal(calls[1].session, session);
+  await runtime.saveAgent({ ...runtime.store.state.agents[0], backend: 'claude' });
+  await runtime.send(room.id, { id: randomUUID(), text: '@planner changed backend' });
+  await until(() => calls.length === 3 && room.runs.at(-1)?.status === 'completed');
+  assert.equal(calls[2].session, undefined); assert.equal(calls[2].backend, 'claude');
+  const second = await runtime.create({ title: 'Separate', cwd: room.cwd, members: ['planner'] });
+  await runtime.send(second.id, { id: randomUUID(), text: '@planner separate room' });
+  await until(() => calls.length === 4); assert.equal(calls[3].session, undefined);
+});
+
+test('stopping CLI aborts its process and cannot publish late text or trigger a relay', async t => {
+  let request: CliRequest | undefined;
+  let finish!: (text: string) => void;
+  const { runtime, room, host } = await fixture(t, 2, input => { request = input; return new Promise(resolve => { finish = resolve; }); });
+  await runtime.saveAgent({ ...runtime.store.state.agents[0], backend: 'codex' });
+  await runtime.send(room.id, { id: randomUUID(), text: '@planner start' });
+  await until(() => !!request);
+  await runtime.stop(room.id); assert.equal(request!.signal.aborted, true);
+  finish('@coder 请不要启动'); await new Promise(r => setTimeout(r, 20));
+  assert.equal(room.runs[0].status, 'stopped'); assert.equal(room.messages.length, 1); assert.equal(host.prompts.length, 0);
+});
+
+test('CLI auth failures remain errors and imported CLI rooms lose all execution identities', async t => {
+  const { runtime, room } = await fixture(t, 1, async () => { throw new Error('Not logged in'); });
+  await runtime.saveAgent({ ...runtime.store.state.agents[0], backend: 'claude' });
+  await runtime.send(room.id, { id: randomUUID(), text: '@planner start' });
+  await until(() => room.runs[0].status === 'error'); assert.equal(room.runs[0].detail, 'Not logged in');
+  const imported = await runtime.importRoom({ format: 'dsh-agentroom/1', agents: runtime.store.state.agents, room });
+  assert.deepEqual(imported.sessions, {}); assert.deepEqual(imported.runs, []); assert.equal(imported.archived, true);
+});
+
+test('restart marks unfinished CLI requests interrupted without replaying or inspecting native sessions', async t => {
+  const dir = await mkdtemp(join(tmpdir(), 'agentroom-cli-restart-'));
+  t.after(() => rm(dir, { recursive: true, force: true }));
+  const store = await new Store(dir).load();
+  store.state.rooms.push({ id: randomUUID(), title: 'Interrupted CLI', cwd: dir, members: ['planner'], archived: false, collaboration: true, createdAt: 1, updatedAt: 1, messages: [], budgets: {}, sessions: { 'codex:planner': 'external-session' }, runs: [{ id: randomUUID(), rootId: randomUUID(), memberId: 'planner', backend: 'codex', sessionId: 'external-session', status: 'running', at: 1, lastSeq: -1, tools: [] }] });
+  await store.save(); await store.close();
+  const host = new FakeHost(); let inspections = 0; host.readSession = async () => { inspections++; return { events: [] }; };
+  let calls = 0;
+  const runtime = await new Runtime(host, new Store(dir), 4, async () => { calls++; return 'unexpected'; }).start();
+  assert.equal(runtime.store.state.rooms[0].runs[0].status, 'interrupted');
+  assert.equal(inspections, 0); assert.equal(calls, 0);
+  assert.equal(runtime.store.state.rooms[0].sessions['codex:planner'], 'external-session');
+  await runtime.close();
 });
