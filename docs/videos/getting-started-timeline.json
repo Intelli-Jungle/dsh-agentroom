@@ -8,7 +8,7 @@
       "title": "DSH Agentroom",
       "narration": "把 Codex 和 Claude 请进同一个房间，会是什么样？这段视频，我们就从安装开始，一起试试 DSH Agentroom。",
       "rendered_start": 0,
-      "rendered_duration": 11.833
+      "rendered_duration": 10.767
     },
     {
       "kind": "card",
@@ -16,8 +16,8 @@
       "duration": 15,
       "title": "安装 Web 版",
       "narration": "先装好 DSH，再按画面上的命令，从原仓库安装插件。地址不用换。这次的 CLI 增强，要等上游合并后才能装到。最后，启动 Web 页面。",
-      "rendered_start": 11.833,
-      "rendered_duration": 16.2
+      "rendered_start": 10.767,
+      "rendered_duration": 15.0
     },
     {
       "kind": "card",
@@ -25,8 +25,8 @@
       "duration": 14,
       "title": "Desktop 与 CLI 登录",
       "narration": "如果用桌面版，就在插件页添加这个地址，启用后完整重启。Codex 和 Claude Code 要先各自登录；DSH 原生成员，则使用宿主配置的模型。",
-      "rendered_start": 28.033,
-      "rendered_duration": 15.1
+      "rendered_start": 25.767,
+      "rendered_duration": 14.0
     },
     {
       "source": "work/recordings/tour.webm",
@@ -35,8 +35,8 @@
       "caption": "一个共享聊天室，每位成员保持自己的持续会话。",
       "narration": "打开左侧的 Agentroom，就来到这个共享聊天室。大家在这里讨论，但每位成员，都保留着自己的会话。",
       "duration": 10,
-      "rendered_start": 43.133,
-      "rendered_duration": 10.8
+      "rendered_start": 39.767,
+      "rendered_duration": 10.0
     },
     {
       "source": "work/recordings/tour.webm",
@@ -45,7 +45,7 @@
       "caption": "填写名称、已有目录，再选择参与成员。",
       "narration": "我们先建一个房间。起个名字，填入已经存在的工作目录，再选上参与成员。这样，就可以开始聊了。",
       "duration": 12,
-      "rendered_start": 53.933,
+      "rendered_start": 49.767,
       "rendered_duration": 12.0
     },
     {
@@ -56,8 +56,8 @@
       "narration": "点开成员，就能修改他的角色和执行方式。原生 DSH、Codex、Claude Code，可以按需要搭配。模型留空，就沿用默认配置。",
       "duration": 13,
       "speed": 0.5,
-      "rendered_start": 65.933,
-      "rendered_duration": 13.833
+      "rendered_start": 61.767,
+      "rendered_duration": 13.0
     },
     {
       "source": "work/recordings/tour.webm",
@@ -66,8 +66,8 @@
       "caption": "@planner 只唤醒 Planner；普通消息不会启动成员。",
       "narration": "想找谁，就艾特谁。比如艾特 planner，这次只有规划师会回答。没有提及成员的普通消息，会留在聊天记录里。",
       "duration": 10,
-      "rendered_start": 79.767,
-      "rendered_duration": 12.267
+      "rendered_start": 74.767,
+      "rendered_duration": 11.2
     },
     {
       "source": "work/recordings/tour.webm",
@@ -76,7 +76,7 @@
       "caption": "执行记录保留 CLI 来源与可续接的 Session ID。",
       "narration": "你看，Codex 已经给出了回复。展开执行记录，还能找到这次调用的结果，以及后续继续聊天所用的会话编号。",
       "duration": 12,
-      "rendered_start": 92.033,
+      "rendered_start": 85.967,
       "rendered_duration": 12.0
     },
     {
@@ -86,7 +86,7 @@
       "caption": "@all 让多个成员同时回应同一份上下文。",
       "narration": "接下来，试试艾特 all。规划师、工程师和审查员会一起开工，从各自的角度，回应同一个问题。",
       "duration": 11,
-      "rendered_start": 104.033,
+      "rendered_start": 97.967,
       "rendered_duration": 11.0
     },
     {
@@ -96,8 +96,8 @@
       "caption": "独立执行，共享结论；等待时间已从成片剪除。",
       "narration": "现在，几位成员的建议都回来了。不同观点摆在一起，比较起来就很方便。这些都是真实回复，等待的部分已经剪掉了。",
       "duration": 13,
-      "rendered_start": 115.033,
-      "rendered_duration": 13.067
+      "rendered_start": 108.967,
+      "rendered_duration": 13.0
     },
     {
       "source": "work/recordings/tour.webm",
@@ -107,8 +107,8 @@
       "narration": "如果希望成员接着彼此的话往下做，可以打开自动接力。每条人工消息，默认最多接力四次。也可以关掉，由你来主持。",
       "duration": 12,
       "speed": 0.5,
-      "rendered_start": 128.1,
-      "rendered_duration": 12.933
+      "rendered_start": 121.967,
+      "rendered_duration": 12.0
     },
     {
       "source": "work/recordings/tour.webm",
@@ -117,17 +117,18 @@
       "caption": "支持 Markdown / JSON 导出，便于复盘与写文章。",
       "narration": "最后，别忘了把讨论保存下来。导出 Markdown，方便复盘和写文章；导出 JSON，就能留下一份完整的房间记录。",
       "duration": 10,
-      "rendered_start": 141.033,
-      "rendered_duration": 12.7
+      "rendered_start": 133.967,
+      "rendered_duration": 11.567
     }
   ],
   "voice": {
     "engine": "edge-tts",
     "name": "zh-CN-XiaoxiaoNeural",
-    "rate": "-4%",
+    "rate": "+6%",
     "pitch": "+0Hz",
     "leadIn": 0.22,
-    "tailOut": 0.45
+    "tailOut": 0.45,
+    "label": "女声 · 晓晓"
   },
-  "rendered_duration": 153.733
+  "rendered_duration": 145.533
 }
