@@ -78,10 +78,10 @@ clips=[]
 for i,shot in enumerate(manifest['shots']):
  start,end=cuts[i:i+2];dur=end-start;target=TMP/f'{name}-{i:02}.mp4'
  overlay=Image.new('RGBA',(1920,1080),'#0c1120');d=ImageDraw.Draw(overlay)
- text(d,(68,28),'AGENTROOM',24,'#9b95ff',True);text(d,(410,25),shot.get('title',''),28)
+ text(d,(68,20),'AGENTROOM',24,'#9b95ff',True);text(d,(410,17),shot.get('title',''),28)
  d.rounded_rectangle((1540,40,1845,46),radius=3,fill='#242d47')
  d.rounded_rectangle((1540,40,1540+305*(i+1)/len(manifest['shots']),46),radius=3,fill='#9690ff')
- d.rectangle((96,96,1824,960),fill=(0,0,0,0))
+ d.rectangle((56,68,1864,1012),fill=(0,0,0,0))
  mask=TMP/f'{name}-{i:02}.png';overlay.save(mask)
  local_cues=[(max(0,a-start),min(dur,b-start),c) for a,b,c in captions if b>start and a<end]
  ass=TMP/f'{name}-{i:02}.ass';write_ass(ass,local_cues)
@@ -93,13 +93,14 @@ for i,shot in enumerate(manifest['shots']):
   span=shot['duration']*shot.get('speed',1)
   playback=span/dur
   cmd+=['-ss',str(shot.get('start',0)),'-t',str(span),'-i',str(src),'-loop','1','-i',str(mask)]
-  filt=f'[0:v]setpts=(PTS-STARTPTS)/{playback},crop=1440:720:0:0,scale=1728:864,setsar=1,tpad=stop_mode=clone:stop_duration=1[screen];[1:v][screen]overlay=96:96:shortest=1[base]'
+  x,y,w,h=shot.get('crop',[0,0,1440,720])
+  filt=f'[0:v]setpts=(PTS-STARTPTS)/{playback},crop={w}:{h}:{x}:{y},scale=1808:944:flags=lanczos,setsar=1,tpad=stop_mode=clone:stop_duration=1[screen];[1:v][screen]overlay=56:68:shortest=1[base]'
   shot['rendered_playback_rate']=round(playback,4)
  filt+=f";[base]ass=filename='{ass}'"
  if i==0:filt+=',fade=t=in:st=0:d=0.3'
  if i==len(manifest['shots'])-1:filt+=f',fade=t=out:st={dur-0.4}:d=0.4'
  filt+='[v]'
- cmd+=['-filter_complex',filt,'-map','[v]','-an','-t',str(dur),'-r','30','-c:v','libx264','-preset','fast','-crf','22','-pix_fmt','yuv420p','-movflags','+faststart',str(target)]
+ cmd+=['-filter_complex',filt,'-map','[v]','-an','-t',str(dur),'-r','30','-c:v','libx264','-preset','slow','-crf','17','-pix_fmt','yuv420p','-movflags','+faststart',str(target)]
  subprocess.run(cmd,check=True);clips.append(target)
  shot['rendered_start']=round(start,3);shot['rendered_duration']=round(dur,3)
  print(f'{name} {i+1}/{len(manifest["shots"])}: {dur:.2f}s',flush=True)

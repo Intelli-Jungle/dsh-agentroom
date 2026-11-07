@@ -18,103 +18,157 @@
       "rendered_duration": 12.533
     },
     {
-      "source": "work/recordings/werewolf.webm",
-      "start": 2.125,
+      "source": "work/recordings/hd/werewolf-01.mkv",
+      "start": 0,
       "title": "让四位玩家入座",
       "caption": "四名玩家，来自 Codex CLI 与 Claude Code。",
       "narration": "先建房间，再选入四位成员。每个人有自己的持续会话，主持人负责推进讨论和投票，控制这局游戏的节奏。",
-      "duration": 13,
-      "rendered_playback_rate": 1.3978,
+      "duration": 5.635,
+      "rendered_playback_rate": 0.6059,
       "rendered_start": 12.533,
-      "rendered_duration": 9.3
+      "rendered_duration": 9.3,
+      "crop": [
+        0,
+        0,
+        2560,
+        1336
+      ]
     },
     {
-      "source": "work/recordings/werewolf.webm",
-      "start": 15.129,
+      "source": "work/recordings/hd/werewolf-02.mkv",
+      "start": 0,
       "title": "设定身份，约定规则",
       "caption": "一狼、一预言家、两村民；身份通过各自角色指令下发。",
       "narration": "这一局只有一狼、一位预言家和两位村民，不设夜间击杀。身份分别写进各自的角色指令，预言家先获得一次查验；大家能一起看到的，是接下来的公开发言。",
-      "duration": 15,
-      "rendered_playback_rate": 1.148,
+      "duration": 6.334,
+      "rendered_playback_rate": 0.4847,
       "rendered_start": 21.833,
-      "rendered_duration": 13.067
+      "rendered_duration": 13.067,
+      "crop": [
+        0,
+        0,
+        2560,
+        1336
+      ]
     },
     {
-      "source": "work/recordings/werewolf.webm",
-      "start": 30.129,
+      "source": "work/recordings/hd/werewolf-03.mkv",
+      "start": 0,
       "title": "第一轮：把判断说出来",
       "caption": "@all 并行唤醒四位玩家，不预写模型回答。",
       "narration": "设置完成，主持人用 @all 发起第一轮。四位玩家各自给出判断，再把发言汇到同一个房间。接下来，分歧出现了。",
-      "duration": 10,
-      "rendered_playback_rate": 0.9494,
+      "duration": 4.125,
+      "rendered_playback_rate": 0.3916,
       "rendered_start": 34.9,
-      "rendered_duration": 10.533
+      "rendered_duration": 10.533,
+      "crop": [
+        648,
+        336,
+        1912,
+        1000
+      ]
     },
     {
-      "source": "work/recordings/werewolf.webm",
-      "start": 75.392,
+      "source": "work/recordings/hd/werewolf-04.mkv",
+      "start": 0,
       "title": "同一名玩家，两份相反的查验",
       "caption": "Claude 狼人悍跳：P3 是狼；Codex 预言家：P3 是好人。",
       "narration": "一号玩家自称预言家，指认三号是狼；二号却说，自己才是预言家，查到三号是好人。两份说法完全相反，其他人该相信谁？",
-      "duration": 13,
-      "rendered_playback_rate": 1.1573,
+      "duration": 7.242,
+      "rendered_playback_rate": 0.6447,
       "rendered_start": 45.433,
-      "rendered_duration": 11.233
+      "rendered_duration": 11.233,
+      "crop": [
+        648,
+        0,
+        1912,
+        1000
+      ]
     },
     {
-      "source": "work/recordings/werewolf.webm",
-      "start": 88.392,
+      "source": "work/recordings/hd/werewolf-05.mkv",
+      "start": 0,
       "title": "第二轮：围绕分歧追问",
       "caption": "所有玩家根据第一轮的共享记录继续推理。",
       "narration": "带着这个矛盾，主持人开启第二轮。每位玩家都能看到上一轮的公开记录，于是，判断开始变成了质疑和辩护。",
-      "duration": 10,
-      "rendered_playback_rate": 1.0453,
+      "duration": 4.128,
+      "rendered_playback_rate": 0.4315,
       "rendered_start": 56.667,
-      "rendered_duration": 9.567
+      "rendered_duration": 9.567,
+      "crop": [
+        648,
+        336,
+        1912,
+        1000
+      ]
     },
     {
-      "source": "work/recordings/werewolf.webm",
-      "start": 133.662,
+      "source": "work/recordings/hd/werewolf-06.mkv",
+      "start": 0,
       "title": "用公开发言检验说法",
       "caption": "P4 追问：如果 P1 为真，为什么好人 P2 要假跳？",
       "narration": "四号追问：如果一号是真的，二号作为好人，为什么还要冒充预言家？他把两个人的发言放在一起，检查说法能不能成立。",
-      "duration": 13,
-      "rendered_playback_rate": 1.2662,
+      "duration": 7.048,
+      "rendered_playback_rate": 0.6865,
       "rendered_start": 66.233,
-      "rendered_duration": 10.267
+      "rendered_duration": 10.267,
+      "crop": [
+        648,
+        0,
+        1912,
+        1000
+      ]
     },
     {
-      "source": "work/recordings/werewolf.webm",
-      "start": 146.663,
+      "source": "work/recordings/hd/werewolf-07.mkv",
+      "start": 0,
       "title": "把判断落实成一票",
       "caption": "每位玩家只投一票，不能投自己。",
       "narration": "讨论到这里，信息已经摆上桌面。现在每人投一票，不能投自己。刚才的判断，最终要落实到一个选择上。",
-      "duration": 10,
-      "rendered_playback_rate": 1.0989,
+      "duration": 4.12,
+      "rendered_playback_rate": 0.4527,
       "rendered_start": 76.5,
-      "rendered_duration": 9.1
+      "rendered_duration": 9.1,
+      "crop": [
+        648,
+        336,
+        1912,
+        1000
+      ]
     },
     {
-      "source": "work/recordings/werewolf.webm",
-      "start": 175.902,
+      "source": "work/recordings/hd/werewolf-08.mkv",
+      "start": 0,
       "title": "三比一，谁将出局",
       "caption": "独立投票已完成，即将揭晓身份。",
       "narration": "结果很集中：一号投给二号，另外三人都投给一号。三比一，一号出局。那他到底是不是狼？",
-      "duration": 13,
-      "rendered_playback_rate": 1.5234,
+      "duration": 6.332,
+      "rendered_playback_rate": 0.742,
       "rendered_start": 85.6,
-      "rendered_duration": 8.533
+      "rendered_duration": 8.533,
+      "crop": [
+        648,
+        0,
+        1912,
+        1000
+      ]
     },
     {
-      "source": "work/recordings/werewolf.webm",
-      "start": 188.902,
+      "source": "work/recordings/hd/werewolf-09.mkv",
+      "start": 0,
       "title": "身份揭晓",
       "caption": "真实票数 3:1，P1 狼人出局，好人获胜。",
       "narration": "身份揭晓，一号确实是狼人，好人获胜。二号是真预言家，三号和四号是村民。这次，大家靠讨论找出了那个说谎的人。",
-      "duration": 16,
-      "rendered_playback_rate": 1.3483,
+      "duration": 7.847,
+      "rendered_playback_rate": 0.6613,
       "rendered_start": 94.133,
-      "rendered_duration": 11.867
+      "rendered_duration": 11.867,
+      "crop": [
+        648,
+        0,
+        1912,
+        1000
+      ]
     },
     {
       "kind": "card",
@@ -136,5 +190,14 @@
     "label": "男声 · 云希",
     "continuous": true
   },
-  "rendered_duration": 120.233
+  "rendered_duration": 120.233,
+  "capture": {
+    "resolution": [
+      2560,
+      1336
+    ],
+    "devicePixelRatio": 2,
+    "intermediate": "lossless H.264 4:4:4",
+    "provenance": "Real DSH UI with stage-by-stage replay of the original recorded conversation; no new model calls."
+  }
 }

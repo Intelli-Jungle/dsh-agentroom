@@ -29,104 +29,157 @@
       "rendered_duration": 13.867
     },
     {
-      "source": "work/recordings/tour.webm",
-      "start": 3.863,
+      "source": "work/recordings/hd/getting-started-03.mkv",
+      "start": 0,
       "title": "从这里开始协作",
       "caption": "一个共享聊天室，每位成员保持自己的持续会话。",
       "narration": "准备好以后，打开左侧的 Agentroom。后面的分工、对话和结果，都会在这个房间里完成。",
-      "duration": 10,
-      "rendered_playback_rate": 1.2552,
+      "duration": 3.918,
+      "rendered_playback_rate": 0.4918,
       "rendered_start": 37.933,
-      "rendered_duration": 7.967
+      "rendered_duration": 7.967,
+      "crop": [
+        0,
+        0,
+        2560,
+        1336
+      ]
     },
     {
-      "source": "work/recordings/tour.webm",
-      "start": 13.864,
+      "source": "work/recordings/hd/getting-started-04.mkv",
+      "start": 0,
       "title": "围绕产品发布，建立房间",
       "caption": "填写名称、已有目录，再选择参与成员。",
       "narration": "比如，我们要讨论一次产品发布。先创建房间，填写名称和已有的工作目录，再选上规划师、工程师和审查员。",
-      "duration": 12,
-      "rendered_playback_rate": 1.1502,
+      "duration": 4.522,
+      "rendered_playback_rate": 0.4334,
       "rendered_start": 45.9,
-      "rendered_duration": 10.433
+      "rendered_duration": 10.433,
+      "crop": [
+        0,
+        0,
+        2560,
+        1336
+      ]
     },
     {
-      "source": "work/recordings/tour.webm",
-      "start": 25.873,
+      "source": "work/recordings/hd/getting-started-05.mkv",
+      "start": 0,
       "title": "安排分工，选择执行方式",
       "caption": "按任务安排角色，选择合适的执行方式和模型。",
       "narration": "然后给每位成员设定职责，再选择执行方式和模型。你可以按任务分配不同角色：有人负责规划，有人关注实现，也有人专门检查风险。",
-      "duration": 13,
-      "speed": 0.5,
-      "rendered_playback_rate": 0.5256,
+      "duration": 5.53,
+      "rendered_playback_rate": 0.4472,
       "rendered_start": 56.333,
-      "rendered_duration": 12.367
+      "rendered_duration": 12.367,
+      "crop": [
+        0,
+        0,
+        2560,
+        1336
+      ]
     },
     {
-      "source": "work/recordings/tour.webm",
-      "start": 38.889,
+      "source": "work/recordings/hd/getting-started-06.mkv",
+      "start": 0,
       "title": "先请规划师起个头",
       "caption": "@planner 只唤醒 Planner；普通消息不会启动成员。",
       "narration": "我们先让规划师起个头：输入 @planner，再写任务。只有被点名的成员会启动；普通消息会进入共享记录。",
-      "duration": 10,
-      "rendered_playback_rate": 1.0563,
+      "duration": 4.123,
+      "rendered_playback_rate": 0.4355,
       "rendered_start": 68.7,
-      "rendered_duration": 9.467
+      "rendered_duration": 9.467,
+      "crop": [
+        648,
+        336,
+        1912,
+        1000
+      ]
     },
     {
-      "source": "work/recordings/tour.webm",
-      "start": 178.575,
+      "source": "work/recordings/hd/getting-started-07.mkv",
+      "start": 0,
       "title": "沿着同一段上下文继续聊",
       "caption": "执行记录保留 CLI 来源与可续接的 Session ID。",
       "narration": "方案回来后，可以直接在这里继续追问。执行记录会保留 CLI 来源和会话编号，让同一位成员接着刚才的上下文往下聊。",
-      "duration": 12,
-      "rendered_playback_rate": 1.0843,
+      "duration": 5.03,
+      "rendered_playback_rate": 0.4545,
       "rendered_start": 78.167,
-      "rendered_duration": 11.067
+      "rendered_duration": 11.067,
+      "crop": [
+        648,
+        0,
+        1912,
+        1000
+      ]
     },
     {
-      "source": "work/recordings/tour.webm",
-      "start": 190.575,
+      "source": "work/recordings/hd/getting-started-08.mkv",
+      "start": 0,
       "title": "再让团队一起补充",
       "caption": "@all 让多个成员同时回应同一份上下文。",
       "narration": "有了初步思路，再用 @all 请大家一起补充。规划师看安排，工程师看实现，审查员看风险，他们回应的是同一段共享讨论。",
-      "duration": 11,
-      "rendered_playback_rate": 0.9593,
+      "duration": 4.127,
+      "rendered_playback_rate": 0.3599,
       "rendered_start": 89.233,
-      "rendered_duration": 11.467
+      "rendered_duration": 11.467,
+      "crop": [
+        648,
+        336,
+        1912,
+        1000
+      ]
     },
     {
-      "source": "work/recordings/tour.webm",
-      "start": 341.095,
+      "source": "work/recordings/hd/getting-started-09.mkv",
+      "start": 0,
       "title": "把不同观点放在一起",
       "caption": "独立执行，共享结论。",
       "narration": "于是，原本分散在几个会话里的建议，就汇到了这条时间线上。你可以把分歧放在一起比较，再决定下一步。",
-      "duration": 10,
-      "rendered_playback_rate": 1.0563,
+      "duration": 6.641,
+      "rendered_playback_rate": 0.7015,
       "rendered_start": 100.7,
-      "rendered_duration": 9.467
+      "rendered_duration": 9.467,
+      "crop": [
+        648,
+        0,
+        1912,
+        1000
+      ]
     },
     {
-      "source": "work/recordings/tour-light-ending.webm",
-      "start": 3.295,
+      "source": "work/recordings/hd/getting-started-10.mkv",
+      "start": 0,
       "title": "由你决定如何接力",
       "caption": "自动接力有次数上限；也可关闭，改由人工主持。",
       "narration": "需要成员继续交接任务时，可以打开自动接力，每条人工消息默认最多四次。如果想自己控制节奏，就保持关闭。",
-      "duration": 7.505000000000001,
-      "rendered_playback_rate": 0.7431,
+      "duration": 5.239,
+      "rendered_playback_rate": 0.5187,
       "rendered_start": 110.167,
-      "rendered_duration": 10.1
+      "rendered_duration": 10.1,
+      "crop": [
+        0,
+        0,
+        2560,
+        1336
+      ]
     },
     {
-      "source": "work/recordings/tour-light-ending.webm",
-      "start": 10.8,
+      "source": "work/recordings/hd/getting-started-11.mkv",
+      "start": 0,
       "title": "把讨论留下来",
       "caption": "支持 Markdown / JSON 导出，便于复盘与写文章。",
       "narration": "讨论结束，导出 Markdown，整理成方案或文章；也可以导出 JSON，保存完整房间。",
-      "duration": 9.346999999999998,
-      "rendered_playback_rate": 1.2631,
+      "duration": 5.331,
+      "rendered_playback_rate": 0.7204,
       "rendered_start": 120.267,
-      "rendered_duration": 7.4
+      "rendered_duration": 7.4,
+      "crop": [
+        648,
+        0,
+        1912,
+        1000
+      ]
     },
     {
       "kind": "card",
@@ -148,5 +201,14 @@
     "label": "女声 · 晓晓",
     "continuous": true
   },
-  "rendered_duration": 140.467
+  "rendered_duration": 140.467,
+  "capture": {
+    "resolution": [
+      2560,
+      1336
+    ],
+    "devicePixelRatio": 2,
+    "intermediate": "lossless H.264 4:4:4",
+    "provenance": "Real DSH UI with stage-by-stage replay of the original recorded conversation; no new model calls."
+  }
 }
