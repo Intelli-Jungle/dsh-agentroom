@@ -12,100 +12,118 @@
       "kind": "card",
       "source": "docs/videos/werewolf-cover.png",
       "duration": 8,
-      "title": "CLI 狼人杀",
-      "narration": "天黑，请闭眼。今天，把 Codex 和 Claude 请到同一张桌上。谁能藏住狼人身份，谁又能找出破绽？",
+      "title": "四名玩家，两种 CLI",
+      "narration": "四个玩家，两个 Codex，两个 Claude。我们把它们放进同一个房间，用一局狼人杀，看看它们怎样判断，又怎样说服彼此。",
       "rendered_start": 0,
-      "rendered_duration": 10.6
+      "rendered_duration": 10.0
     },
     {
       "source": "work/recordings/werewolf.webm",
       "start": 2.125,
-      "title": "01 新建狼人杀 Room",
+      "title": "让四位玩家入座",
       "caption": "四名玩家，来自 Codex CLI 与 Claude Code。",
-      "narration": "先开一个新房间，四位玩家入座。两位用 Codex，两位用 Claude。每个人，都有自己独立的会话。",
+      "narration": "先建房间，再选入四位成员。每个人有自己的持续会话，主持人负责推进讨论和投票，控制这局游戏的节奏。",
       "duration": 13,
-      "rendered_start": 10.6,
-      "rendered_duration": 13.0
+      "rendered_playback_rate": 1.3929,
+      "rendered_start": 10.0,
+      "rendered_duration": 9.333
     },
     {
       "source": "work/recordings/werewolf.webm",
       "start": 15.129,
-      "title": "02 天黑请闭眼",
+      "title": "设定身份，约定规则",
       "caption": "一狼、一预言家、两村民；身份通过各自角色指令下发。",
-      "narration": "规则很简单：一只狼，一位预言家，两位村民。这一夜不设击杀，预言家已经查过一个人。身份只写进各自的角色指令，公开区只留发言。",
+      "narration": "这一局只有一狼、一位预言家和两位村民，不设夜间击杀。身份分别写进各自的角色指令，预言家先获得一次查验；大家能一起看到的，是接下来的公开发言。",
       "duration": 15,
-      "rendered_start": 23.6,
-      "rendered_duration": 15.0
+      "rendered_playback_rate": 1.1509,
+      "rendered_start": 19.333,
+      "rendered_duration": 13.033
     },
     {
       "source": "work/recordings/werewolf.webm",
       "start": 30.129,
-      "title": "03 第一轮 · 公开发言",
+      "title": "第一轮：把判断说出来",
       "caption": "@all 并行唤醒四位玩家，不预写模型回答。",
-      "narration": "天亮了。主持人艾特 all，第一轮发言开始。四位玩家各自思考，再把自己的判断发到房间里。",
+      "narration": "设置完成，主持人用 @all 发起第一轮。四位玩家各自给出判断，再把发言汇到同一个房间。接下来，分歧出现了。",
       "duration": 10,
-      "rendered_start": 38.6,
-      "rendered_duration": 10.0
+      "rendered_playback_rate": 0.9494,
+      "rendered_start": 32.367,
+      "rendered_duration": 10.533
     },
     {
       "source": "work/recordings/werewolf.webm",
       "start": 75.392,
-      "title": "04 两个预言家，谁在说谎？",
+      "title": "同一名玩家，两份相反的查验",
       "caption": "Claude 狼人悍跳：P3 是狼；Codex 预言家：P3 是好人。",
-      "narration": "咦，两个预言家？一号说，三号是狼。二号却说，三号是好人。同一个人，两份相反的查验。谁在说谎？",
+      "narration": "一号 Claude 自称预言家，指认三号是狼；二号 Codex 却说，自己才是预言家，查到三号是好人。两份说法完全相反，其他人该相信谁？",
       "duration": 13,
-      "rendered_start": 48.6,
-      "rendered_duration": 13.0
+      "rendered_playback_rate": 1.0955,
+      "rendered_start": 42.9,
+      "rendered_duration": 11.867
     },
     {
       "source": "work/recordings/werewolf.webm",
       "start": 88.392,
-      "title": "05 第二轮 · 质疑与辩护",
+      "title": "第二轮：围绕分歧追问",
       "caption": "所有玩家根据第一轮的共享记录继续推理。",
-      "narration": "进入第二轮。大家已经看过彼此的发言，这回，就得拿出证据了。是继续坚持，还是改变判断？",
+      "narration": "带着这个矛盾，主持人开启第二轮。每位玩家都能看到上一轮的公开记录，于是，判断开始变成了质疑和辩护。",
       "duration": 10,
-      "rendered_start": 61.6,
-      "rendered_duration": 10.0
+      "rendered_playback_rate": 1.0453,
+      "rendered_start": 54.767,
+      "rendered_duration": 9.567
     },
     {
       "source": "work/recordings/werewolf.webm",
       "start": 133.662,
-      "title": "06 谁的证据站得住",
+      "title": "用公开发言检验说法",
       "caption": "P4 追问：如果 P1 为真，为什么好人 P2 要假跳？",
-      "narration": "四号抓住了一个问题：如果一号真是预言家，那二号作为好人，为什么还要假跳？这个矛盾，狼人得解释清楚。",
+      "narration": "四号追问：如果一号是真的，二号作为好人，为什么还要冒充预言家？他把两个人的发言放在一起，检查说法能不能成立。",
       "duration": 13,
-      "rendered_start": 71.6,
-      "rendered_duration": 13.0
+      "rendered_playback_rate": 1.2662,
+      "rendered_start": 64.333,
+      "rendered_duration": 10.267
     },
     {
       "source": "work/recordings/werewolf.webm",
       "start": 146.663,
-      "title": "07 投票时刻",
+      "title": "把判断落实成一票",
       "caption": "每位玩家只投一票，不能投自己。",
-      "narration": "好，讨论到这里。现在每人投一票，不能投自己。究竟相信谁，是时候做决定了。",
+      "narration": "讨论到这里，信息已经摆上桌面。现在每人投一票，不能投自己。刚才的判断，最终要落实到一个选择上。",
       "duration": 10,
-      "rendered_start": 84.6,
-      "rendered_duration": 10.0
+      "rendered_playback_rate": 1.0989,
+      "rendered_start": 74.6,
+      "rendered_duration": 9.1
     },
     {
       "source": "work/recordings/werewolf.webm",
       "start": 175.902,
-      "title": "08 票数公开",
+      "title": "三比一，谁将出局",
       "caption": "独立投票已完成，即将揭晓身份。",
-      "narration": "四张票都到齐了。一号投二号，另外三位，全都投给了一号。三比一。接下来，揭晓身份。",
+      "narration": "结果很集中：一号投给二号，另外三人都投给一号。三比一，一号出局。那他到底是不是狼？",
       "duration": 13,
-      "rendered_start": 94.6,
-      "rendered_duration": 13.0
+      "rendered_playback_rate": 1.5175,
+      "rendered_start": 83.7,
+      "rendered_duration": 8.567
     },
     {
       "source": "work/recordings/werewolf.webm",
       "start": 188.902,
-      "title": "09 身份揭晓",
+      "title": "身份揭晓",
       "caption": "真实票数 3:1，P1 狼人出局，好人获胜。",
-      "narration": "一号，确实是狼人！好人获胜。二号是真预言家，三号和四号都是村民。这场对跳、质疑和投票，全部来自刚才这局真实对话。",
+      "narration": "身份揭晓，一号确实是狼人，好人获胜。二号是真预言家，三号和四号是村民。这次，大家靠讨论找出了那个说谎的人。",
       "duration": 16,
-      "rendered_start": 107.6,
-      "rendered_duration": 16.0
+      "rendered_playback_rate": 1.3521,
+      "rendered_start": 92.267,
+      "rendered_duration": 11.833
+    },
+    {
+      "kind": "card",
+      "source": "docs/videos/werewolf-ending-cover.png",
+      "duration": 10,
+      "narration": "这局游戏，也展示了 Agentroom 的协作方式：各自保留角色和会话，把讨论放到一起，再由主持人推动下一步。把游戏换成需求评审或方案讨论，道理也是一样的。",
+      "title": "把这套讨论方式带回工作",
+      "rendered_start": 104.1,
+      "rendered_duration": 14.133
     }
   ],
   "voice": {
@@ -113,9 +131,10 @@
     "name": "zh-CN-YunxiNeural",
     "rate": "+6%",
     "pitch": "+0Hz",
-    "leadIn": 0.22,
-    "tailOut": 0.45,
-    "label": "男声 · 云希"
+    "leadIn": 0.25,
+    "tailOut": 0.6,
+    "label": "男声 · 云希",
+    "continuous": true
   },
-  "rendered_duration": 123.6
+  "rendered_duration": 118.233
 }

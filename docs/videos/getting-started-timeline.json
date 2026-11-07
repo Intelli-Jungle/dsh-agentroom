@@ -5,120 +5,138 @@
       "kind": "card",
       "source": "docs/videos/getting-started-cover.png",
       "duration": 8,
-      "title": "DSH Agentroom",
-      "narration": "把 Codex 和 Claude 请进同一个房间，会是什么样？这段视频，我们就从安装开始，一起试试 DSH Agentroom。",
+      "title": "把不同 CLI 请进同一个房间",
+      "narration": "一个问题，想同时听听 Codex 和 Claude 的判断？用 DSH Agentroom，就能把它们放进同一个聊天室。",
       "rendered_start": 0,
-      "rendered_duration": 10.767
+      "rendered_duration": 9.5
     },
     {
       "kind": "card",
       "source": "docs/videos/install-web.png",
       "duration": 15,
-      "title": "安装 Web 版",
-      "narration": "先装好 DSH，再按画面上的命令，从原仓库安装插件。地址不用换。这次的 CLI 增强，要等上游合并后才能装到。最后，启动 Web 页面。",
-      "rendered_start": 10.767,
-      "rendered_duration": 15.0
+      "title": "先把插件装起来",
+      "narration": "先把插件装起来。Web 版按画面上的命令操作，安装地址仍然是原仓库。这里展示的 CLI 增强版，需要上游合并后才能从这个地址获取。",
+      "rendered_start": 9.5,
+      "rendered_duration": 13.033
     },
     {
       "kind": "card",
       "source": "docs/videos/install-desktop.png",
       "duration": 14,
-      "title": "Desktop 与 CLI 登录",
-      "narration": "如果用桌面版，就在插件页添加这个地址，启用后完整重启。Codex 和 Claude Code 要先各自登录；DSH 原生成员，则使用宿主配置的模型。",
-      "rendered_start": 25.767,
-      "rendered_duration": 14.0
+      "title": "桌面安装与登录准备",
+      "narration": "桌面版也用同一个地址，添加、启用，再完整重启。接着确认 Codex 和 Claude Code 已在本机登录；原生成员则使用 DSH 的模型配置。",
+      "rendered_start": 22.533,
+      "rendered_duration": 12.567
     },
     {
       "source": "work/recordings/tour.webm",
       "start": 3.863,
-      "title": "01 进入 Agentroom",
+      "title": "从这里开始协作",
       "caption": "一个共享聊天室，每位成员保持自己的持续会话。",
-      "narration": "打开左侧的 Agentroom，就来到这个共享聊天室。大家在这里讨论，但每位成员，都保留着自己的会话。",
+      "narration": "准备好以后，打开左侧的 Agentroom。后面的分工、对话和结果，都会在这个房间里完成。",
       "duration": 10,
-      "rendered_start": 39.767,
-      "rendered_duration": 10.0
+      "rendered_playback_rate": 1.25,
+      "rendered_start": 35.1,
+      "rendered_duration": 8.0
     },
     {
       "source": "work/recordings/tour.webm",
       "start": 13.864,
-      "title": "02 创建会话",
+      "title": "围绕产品发布，建立房间",
       "caption": "填写名称、已有目录，再选择参与成员。",
-      "narration": "我们先建一个房间。起个名字，填入已经存在的工作目录，再选上参与成员。这样，就可以开始聊了。",
+      "narration": "比如，我们要讨论一次产品发布。先创建房间，填写名称和已有的工作目录，再选上规划师、工程师和审查员。",
       "duration": 12,
-      "rendered_start": 49.767,
-      "rendered_duration": 12.0
+      "rendered_playback_rate": 1.1538,
+      "rendered_start": 43.1,
+      "rendered_duration": 10.4
     },
     {
       "source": "work/recordings/tour.webm",
       "start": 25.873,
-      "title": "03 配置执行方式",
+      "title": "安排分工，选择执行方式",
       "caption": "DSH 原生、Codex CLI、Claude Code，可按成员选择。",
-      "narration": "点开成员，就能修改他的角色和执行方式。原生 DSH、Codex、Claude Code，可以按需要搭配。模型留空，就沿用默认配置。",
+      "narration": "然后给每位成员设定职责，并选择背后的执行方式。可以全部用 Codex，也可以混合 Claude 和原生 DSH。这样，同一个问题就有了不同的观察角度。",
       "duration": 13,
       "speed": 0.5,
-      "rendered_start": 61.767,
-      "rendered_duration": 13.0
+      "rendered_playback_rate": 0.4688,
+      "rendered_start": 53.5,
+      "rendered_duration": 13.867
     },
     {
       "source": "work/recordings/tour.webm",
       "start": 38.889,
-      "title": "04 单独提及",
+      "title": "先请规划师起个头",
       "caption": "@planner 只唤醒 Planner；普通消息不会启动成员。",
-      "narration": "想找谁，就艾特谁。比如艾特 planner，这次只有规划师会回答。没有提及成员的普通消息，会留在聊天记录里。",
+      "narration": "我们先让规划师起个头：输入 @planner，再写任务。只有被点名的成员会启动；普通消息会进入共享记录。",
       "duration": 10,
-      "rendered_start": 74.767,
-      "rendered_duration": 11.2
+      "rendered_playback_rate": 1.0563,
+      "rendered_start": 67.367,
+      "rendered_duration": 9.467
     },
     {
       "source": "work/recordings/tour.webm",
       "start": 178.575,
-      "title": "05 真实 CLI 回复",
+      "title": "沿着同一段上下文继续聊",
       "caption": "执行记录保留 CLI 来源与可续接的 Session ID。",
-      "narration": "你看，Codex 已经给出了回复。展开执行记录，还能找到这次调用的结果，以及后续继续聊天所用的会话编号。",
+      "narration": "方案回来后，可以直接在这里继续追问。执行记录会保留 CLI 来源和会话编号，让同一位成员接着刚才的上下文往下聊。",
       "duration": 12,
-      "rendered_start": 85.967,
-      "rendered_duration": 12.0
+      "rendered_playback_rate": 1.0843,
+      "rendered_start": 76.833,
+      "rendered_duration": 11.067
     },
     {
       "source": "work/recordings/tour.webm",
       "start": 190.575,
-      "title": "06 并行协作",
+      "title": "再让团队一起补充",
       "caption": "@all 让多个成员同时回应同一份上下文。",
-      "narration": "接下来，试试艾特 all。规划师、工程师和审查员会一起开工，从各自的角度，回应同一个问题。",
+      "narration": "有了初步思路，再用 @all 请大家一起补充。规划师看安排，工程师看实现，审查员看风险，他们回应的是同一段共享讨论。",
       "duration": 11,
-      "rendered_start": 97.967,
-      "rendered_duration": 11.0
+      "rendered_playback_rate": 0.9565,
+      "rendered_start": 87.9,
+      "rendered_duration": 11.5
     },
     {
       "source": "work/recordings/tour.webm",
       "start": 341.095,
-      "title": "07 汇聚不同视角",
-      "caption": "独立执行，共享结论；等待时间已从成片剪除。",
-      "narration": "现在，几位成员的建议都回来了。不同观点摆在一起，比较起来就很方便。这些都是真实回复，等待的部分已经剪掉了。",
-      "duration": 13,
-      "rendered_start": 108.967,
-      "rendered_duration": 13.0
+      "title": "把不同观点放在一起",
+      "caption": "独立执行，共享结论。",
+      "narration": "于是，原本分散在几个终端里的建议，就汇到了这条时间线上。你可以把分歧放在一起比较，再决定下一步。",
+      "duration": 10,
+      "rendered_playback_rate": 1.0601,
+      "rendered_start": 99.4,
+      "rendered_duration": 9.433
     },
     {
       "source": "work/recordings/tour.webm",
       "start": 354.097,
-      "title": "08 管理接力与主题",
+      "title": "由你决定如何接力",
       "caption": "自动接力有次数上限；也可关闭，改由人工主持。",
-      "narration": "如果希望成员接着彼此的话往下做，可以打开自动接力。每条人工消息，默认最多接力四次。也可以关掉，由你来主持。",
+      "narration": "需要成员继续交接任务时，可以打开自动接力，每条人工消息默认最多四次。如果想自己控制节奏，就保持关闭。",
       "duration": 12,
       "speed": 0.5,
-      "rendered_start": 121.967,
-      "rendered_duration": 12.0
+      "rendered_playback_rate": 0.5941,
+      "rendered_start": 108.833,
+      "rendered_duration": 10.1
     },
     {
       "source": "work/recordings/tour.webm",
       "start": 366.099,
-      "title": "09 导出与复用",
+      "title": "把讨论留下来",
       "caption": "支持 Markdown / JSON 导出，便于复盘与写文章。",
-      "narration": "最后，别忘了把讨论保存下来。导出 Markdown，方便复盘和写文章；导出 JSON，就能留下一份完整的房间记录。",
+      "narration": "讨论结束，导出 Markdown，整理成方案或文章；也可以导出 JSON，保存完整房间。",
       "duration": 10,
-      "rendered_start": 133.967,
-      "rendered_duration": 11.567
+      "rendered_playback_rate": 1.2712,
+      "rendered_start": 118.933,
+      "rendered_duration": 7.867
+    },
+    {
+      "kind": "card",
+      "source": "docs/videos/getting-started-ending-cover.png",
+      "duration": 10,
+      "narration": "从各自回答，到围绕同一个问题协作，Agentroom 把这段过程串了起来。下一段，我们用一局狼人杀，看看不同 CLI 会怎样交锋。",
+      "title": "从讨论到下一步",
+      "rendered_start": 126.8,
+      "rendered_duration": 12.333
     }
   ],
   "voice": {
@@ -126,9 +144,10 @@
     "name": "zh-CN-XiaoxiaoNeural",
     "rate": "+6%",
     "pitch": "+0Hz",
-    "leadIn": 0.22,
-    "tailOut": 0.45,
-    "label": "女声 · 晓晓"
+    "leadIn": 0.25,
+    "tailOut": 0.6,
+    "label": "女声 · 晓晓",
+    "continuous": true
   },
-  "rendered_duration": 145.533
+  "rendered_duration": 139.133
 }
