@@ -18,14 +18,14 @@ def card(slug,title,sub,chapter):
  lines=title.split('\n')
  for i,line in enumerate(lines):text(d,(100,340+i*110),line,82)
  text(d,(105,630),sub,30,'#b8c3db')
- for i,(name,color) in enumerate([('DSH','#8268f5'),('CODEX CLI','#3b82f6'),('CLAUDE CODE','#db9272')]):
-  x=104+i*430;d.rounded_rectangle((x,740,x+385,840),radius=20,fill='#1a2235',outline='#344059',width=2);d.ellipse((x+24,779,x+40,795),fill=color);text(d,(x+64,770),name,29,latin=True)
- text(d,(104,961),'Intelli-Jungle  /  dsh-agentroom',25,'#8793ad',True);text(d,(1600,961),'v0.2.0',25,'#8793ad',True)
+ for i,(name,color) in enumerate([('独立会话','#8268f5'),('共享讨论','#3b82f6'),('角色协作','#db9272')]):
+  x=104+i*430;d.rounded_rectangle((x,740,x+385,840),radius=20,fill='#1a2235',outline='#344059',width=2);d.ellipse((x+24,779,x+40,795),fill=color);text(d,(x+64,770),name,29)
+ text(d,(104,961),'Intelli-Jungle  /  dsh-agentroom',25,'#8793ad',True)
  path=OUT/(slug+'-cover.png');im.save(path);return path
-card('getting-started','把 CLI 团队\n请进同一个房间','安装 · 成员配置 · 真实对话 · 并行协作','01  /  GETTING STARTED')
-card('werewolf','天黑请闭眼\nCLI 狼人杀开局','新建 Room · 独立身份 · 公开辩论 · 投票揭晓','02  /  THE WEREWOLF ROOM')
+card('getting-started','多 Agent 协作\n从一个房间开始','安装 · 角色分工 · 共享讨论 · 持续会话','01  /  GETTING STARTED')
+card('werewolf','天黑请闭眼\n让 Agent 玩一局狼人杀','创建房间 · 分配身份 · 公开讨论 · 投票揭晓','02  /  THE WEREWOLF ROOM')
 card('getting-started-ending','让分工发生\n让讨论留下来','从一个问题，到一份可以继续推进的方案','SHARED DISCUSSION  /  CLEAR NEXT STEPS')
-card('werewolf-ending','一场对局\n看见不同的推理','各自扮演角色，共同推进讨论','CODEX × CLAUDE  /  ONE SHARED ROOM')
+card('werewolf-ending','一场对局\n看见不同的推理','各自扮演角色，共同推进讨论','INDEPENDENT AGENTS  /  SHARED DISCUSSION')
 if len(sys.argv)<2:sys.exit()
 import math, wave
 from speech_text import script_data

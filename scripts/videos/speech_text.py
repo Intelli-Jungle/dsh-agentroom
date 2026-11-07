@@ -5,10 +5,14 @@ import json
 
 
 def spoken_text(text):
+    text = re.sub('Agentroom', 'Agent room', text, flags=re.IGNORECASE)
+    text = re.sub(r'\bJSON\b', 'Jason', text, flags=re.IGNORECASE)
     return text.replace('DSH', 'D S H').replace('CLI', 'C L I').replace('@', ' at ')
 
 
 def caption_text(text):
+    text = re.sub(r'Agent\s+room', 'Agentroom', text, flags=re.IGNORECASE)
+    text = re.sub(r'\bJason\b', 'JSON', text, flags=re.IGNORECASE)
     text = text.replace('D S H', 'DSH').replace('C L I', 'CLI')
     return re.sub(r'\s*\bat\b\s*', '@', text)
 

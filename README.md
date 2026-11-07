@@ -16,30 +16,30 @@
 
 | 配音版本 | 播放 / 下载 | 时长 | 字幕 |
 | --- | --- | --- | --- |
-| 女声 · 晓晓 | [MP4](docs/videos/getting-started.mp4?raw=1) | 2 分 19 秒 | [SRT](docs/videos/getting-started.zh-CN.srt) |
-| 男声 · 云希 | [MP4](docs/videos/getting-started-male.mp4?raw=1) | 2 分 13 秒 | [SRT](docs/videos/getting-started-male.zh-CN.srt) |
+| 女声 · 晓晓 | [MP4](docs/videos/getting-started.mp4?raw=1) | 2 分 20 秒 | [SRT](docs/videos/getting-started.zh-CN.srt) |
+| 男声 · 云希 | [MP4](docs/videos/getting-started-male.mp4?raw=1) | 2 分 14 秒 | [SRT](docs/videos/getting-started-male.zh-CN.srt) |
 
-从 Web / Desktop 安装开始，演示新建 Room、角色与执行方式配置、`@planner` 单独聊天、`@all` 并行协作、独立 CLI 会话记录、自动接力设置和导出入口。支持范围为 DSH 原生、Codex CLI 与 Claude Code；本片聊天画面来自 **Codex CLI 真实调用**。1080p、中文神经网络配音与逐句字幕。
+从 Web / Desktop 安装开始，演示新建 Room、角色与执行方式配置、`@planner` 单独聊天、`@all` 并行协作、独立 CLI 会话记录、自动接力设置和导出入口。Codex 和 Claude Code 是本次选用的演示示例；本片聊天画面来自 **Codex CLI 真实调用**。1080p、中文神经网络配音与逐句字幕。
 
 | 女声版时间 | 男声版时间 | 内容 |
 | --- | --- | --- |
-| 00:10 | 00:09 | Web 安装命令 |
-| 00:23 | 00:22 | Desktop 安装与 CLI 登录 |
-| 00:35 | 00:35 | 进入 Agentroom、创建房间 |
-| 00:54 | 00:52 | 配置执行方式与角色 |
-| 01:07 | 01:05 | 单独提及与真实回复 |
-| 01:28 | 01:24 | 多成员并行讨论 |
-| 01:49 | 01:44 | 接力设置与导出 |
-| 02:07 | 02:01 | 从讨论到下一步 |
+| 00:11 | 00:11 | Web 安装命令 |
+| 00:24 | 00:23 | Desktop 安装与 CLI 登录 |
+| 00:38 | 00:36 | 进入 Agentroom、创建房间 |
+| 00:56 | 00:54 | 配置执行方式与角色 |
+| 01:09 | 01:05 | 单独提及与真实回复 |
+| 01:29 | 01:24 | 多成员并行讨论 |
+| 01:50 | 01:45 | 接力设置与导出 |
+| 02:08 | 02:01 | 从讨论到下一步 |
 
-### ② Codex × Claude 狼人杀
+### ② 多 Agent 狼人杀（Codex × Claude 示例）
 
 [![观看：Codex 与 Claude Code 狼人杀](docs/videos/werewolf-cover.png)](docs/videos/werewolf.mp4?raw=1)
 
 | 配音版本 | 播放 / 下载 | 时长 | 字幕 |
 | --- | --- | --- | --- |
-| 女声 · 晓晓 | [MP4](docs/videos/werewolf.mp4?raw=1) | 2 分 04 秒 | [SRT](docs/videos/werewolf.zh-CN.srt) |
-| 男声 · 云希 | [MP4](docs/videos/werewolf-male.mp4?raw=1) | 1 分 58 秒 | [SRT](docs/videos/werewolf-male.zh-CN.srt) |
+| 女声 · 晓晓 | [MP4](docs/videos/werewolf.mp4?raw=1) | 2 分 05 秒 | [SRT](docs/videos/werewolf.zh-CN.srt) |
+| 男声 · 云希 | [MP4](docs/videos/werewolf-male.mp4?raw=1) | 2 分 00 秒 | [SRT](docs/videos/werewolf-male.zh-CN.srt) |
 
 [完整对话](docs/videos/werewolf-transcript.md) · [可导入的房间 JSON](docs/videos/werewolf-session.json)
 
@@ -47,14 +47,14 @@
 
 | 女声版时间 | 男声版时间 | 内容 |
 | --- | --- | --- |
-| 00:10 | 00:10 | 创建四人混合 CLI 房间 |
-| 00:20 | 00:19 | 身份与一夜规则 |
-| 00:35 | 00:32 | 第一轮公开发言 |
-| 00:46 | 00:43 | 两个预言家给出相反查验 |
-| 00:58 | 00:55 | 第二轮质疑与辩护 |
-| 01:18 | 01:15 | 最终投票 |
-| 01:37 | 01:32 | 统计、身份揭晓与结果 |
-| 01:49 | 01:44 | 这套讨论方式还能做什么 |
+| 00:13 | 00:13 | 创建四人混合 CLI 房间 |
+| 00:23 | 00:22 | 身份与一夜规则 |
+| 00:37 | 00:35 | 第一轮公开发言 |
+| 00:48 | 00:45 | 两个预言家给出相反查验 |
+| 00:59 | 00:57 | 第二轮质疑与辩护 |
+| 01:20 | 01:16 | 最终投票 |
+| 01:39 | 01:34 | 统计、身份揭晓与结果 |
+| 01:50 | 01:46 | 这套讨论方式还能做什么 |
 
 视频、封面与字幕可直接用于介绍本项目的文章；引用时请注明 Intelli-Jungle / dsh-agentroom。录制与验证说明见 [视频制作记录](docs/videos/production.md)。
 
